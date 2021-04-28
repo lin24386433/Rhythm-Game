@@ -1,0 +1,2 @@
+/Users/lin/Desktop/Rhythm Game/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache
+/Users/lin/Desktop/Rhythm Game/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache
