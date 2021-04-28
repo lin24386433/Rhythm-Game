@@ -885,9 +885,8 @@ public class GameController : MonoBehaviour
         dspSongTime = (float)AudioSettings.dspTime;
 
         int startAtBeat = CheckStartAtBeat();
-        Debug.Log(startAtBeat);
 
-        waitTime = (((10 / beatPerSec) + 1) * beatPerSec) / beatPerSec + beatPerSec * startAtBeat;
+        waitTime = (((10 / secPerBeat) + 1) * secPerBeat) / beatPerSec + (startAtBeat-2) * secPerBeat;
 
         StartCoroutine(WaitForStart(waitTime));
 
@@ -918,9 +917,9 @@ public class GameController : MonoBehaviour
     {
         int x = 0;
         
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 100; i++)
         {
-            for (int j = 0; i <= 2; j++)
+            for (int j = 0; j < 4; j++)
             {
                 if (notes[i, j] == 1)
                     return x;
@@ -954,7 +953,7 @@ public class GameController : MonoBehaviour
         {
             if(notes[currentBeat, i] == 1)
             {
-                Instantiate(notePrefab, spawnPoints[i].transform.position + new Vector3(0,((10/beatPerSec)+1) * beatPerSec, 0), spawnPoints[i].transform.rotation);
+                Instantiate(notePrefab, spawnPoints[i].transform.position + new Vector3(0,((10/ secPerBeat) +1) * secPerBeat, 0), spawnPoints[i].transform.rotation);
             }
         }
     }
