@@ -6,18 +6,19 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     
-    public int[,] notes = new int[804, 4]{
+    public int[,] notes = new int[804, 4]
+    {
         {0,0,0,0},
 {0,0,0,0},
 {0,0,0,0},
 {0,0,0,0},
 {0,0,0,0},
+{0,1,0,0},
 {0,0,0,0},
 {0,0,0,0},
+{0,0,1,0},
 {0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
+{0,1,0,0},
 {0,0,0,0},
 {0,0,0,0},
 {0,0,0,0},
@@ -811,9 +812,7 @@ public class GameController : MonoBehaviour
 {0,0,0,0},
 {0,0,0,0},
 {0,0,0,0}
-        };
-    
-    
+    };
 
     public static GameController instance;
 
@@ -828,7 +827,7 @@ public class GameController : MonoBehaviour
     public Text scoreTxt;
     public Text comboTxt;
 
-    public float waitTime;
+    public float timeBeforeStart;
 
     //Song beats per minute
     //This is determined by the song you're trying to sync up to
@@ -846,15 +845,11 @@ public class GameController : MonoBehaviour
     //Current song position, in beats
     public float songPositionInBeats;
 
-    public float songPositionInPreBeats;
-
     //How many seconds have passed since the song started
     public float dspSongTime;
 
     //an AudioSource attached to this GameObject that will play the music.
     public AudioSource musicSource;
-
-    public float time;
 
     public float musicLength;
 
@@ -872,62 +867,48 @@ public class GameController : MonoBehaviour
         musicLength = musicSource.clip.length;
 
         totalBeats = (Mathf.RoundToInt((songBpm * musicLength) / 60));
-
-        //notes = new int[totalBeats, 4];
         
-
         //Calculate the number of seconds in each beat
         secPerBeat = 60f / songBpm;
 
-        beatPerSec = 1f / secPerBeat;
+        beatPerSec = songBpm / 60f;
 
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
 
-        int startAtBeat = CheckStartAtBeat();
+        timeBeforeStart = (((10 / secPerBeat) + 1) * secPerBeat) / beatPerSec;
 
-        waitTime = (((10 / secPerBeat) + 1) * secPerBeat) / beatPerSec + (startAtBeat-2) * secPerBeat;
+        StartCoroutine(WaitForStart(timeBeforeStart));
 
-        StartCoroutine(WaitForStart(waitTime));
-
-        StartCoroutine(BeatsGapTime(secPerBeat));
     }
 
     void Update()
     {
-        time = musicSource.time;
-
         //determine how many seconds since the song started
         songPosition = (float)(AudioSettings.dspTime - dspSongTime);
 
-        songPositionInPreBeats = (int)(songPosition / secPerBeat);
-
-        
-
         //determine how many beats since the song started
-        songPositionInBeats = time / secPerBeat;
+        songPositionInBeats = songPosition / secPerBeat;
 
         beatNow = (int)songPositionInBeats;
 
+        for(int k = 0; k < 804; k++)
+        {
+            if(beatNow == k)
+            {
+                for (int i = 0; i <= 3; i++)
+                {
+                    if (notes[k, i] == 1)
+                    {
+                        notes[k, i] = 0;
+                        Instantiate(notePrefab, spawnPoints[i].transform.position + new Vector3(0, ((10 / secPerBeat) + 1) * secPerBeat, 0), spawnPoints[i].transform.rotation);
+                    }
+                }
+            }
+        }
+
         scoreTxt.text = "Score : " + gameScore;
         comboTxt.text = "Combo : " + combo;
-    }
-
-    int CheckStartAtBeat()
-    {
-        int x = 0;
-        
-        for (int i = 0; i < 100; i++)
-        {
-            for (int j = 0; j < 4; j++)
-            {
-                if (notes[i, j] == 1)
-                    return x;
-            }
-            x++;
-        }
-        
-        return x;
     }
 
     IEnumerator WaitForStart(float mytime)
@@ -935,27 +916,6 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(mytime);
         //Start the music
         musicSource.Play();
-    }
-
-    IEnumerator BeatsGapTime(float mytime)
-    { 
-        for(int i = 0; i < totalBeats; i++)
-        {
-            spawnNoteInBeat(i);
-            yield return new WaitForSeconds(mytime); // ����x��
-        }
-        
-    }
-
-    void spawnNoteInBeat(int currentBeat)
-    {
-        for(int i = 0; i<=3; i++)
-        {
-            if(notes[currentBeat, i] == 1)
-            {
-                Instantiate(notePrefab, spawnPoints[i].transform.position + new Vector3(0,((10/ secPerBeat) +1) * secPerBeat, 0), spawnPoints[i].transform.rotation);
-            }
-        }
     }
 }
 

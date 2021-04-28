@@ -1683,7 +1683,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1182748620
@@ -2276,16 +2276,14 @@ MonoBehaviour:
   timingTxt: {fileID: 384205289}
   scoreTxt: {fileID: 9508997}
   comboTxt: {fileID: 1990992388}
-  waitTime: 0
+  timeBeforeStart: 0
   songBpm: 540
   secPerBeat: 0
   beatPerSec: 0
   songPosition: 0
   songPositionInBeats: 0
-  songPositionInPreBeats: 0
   dspSongTime: 0
   musicSource: {fileID: 1902146807}
-  time: 0
   musicLength: 0
   beatNow: 0
   totalBeats: 0
