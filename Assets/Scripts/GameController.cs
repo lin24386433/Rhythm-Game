@@ -858,6 +858,8 @@ public class GameController : MonoBehaviour
     public int gameScore = 0;
     public int combo = 0;
 
+    public int fullComboNumber = 0;
+
     // 遊戲UI
     public Text timingTxt;
     public Text scoreTxt;
@@ -919,6 +921,8 @@ public class GameController : MonoBehaviour
         // 初始化音樂設定
         MusicSetUP();
 
+        // 
+        BasicSetUP();
     }
 
     void Update()
@@ -959,6 +963,11 @@ public class GameController : MonoBehaviour
         timeBeforeStart = (((10 / secPerBeat) + 1) * secPerBeat) / beatPerSec;
 
         StartCoroutine(WaitForStart(timeBeforeStart));
+    }
+
+    void BasicSetUP()
+    {
+        calculateFullCombo();
     }
 
     /// <summary>
@@ -1004,6 +1013,20 @@ public class GameController : MonoBehaviour
     {
         scoreTxt.text = "Score : " + gameScore;
         comboTxt.text = "Combo : " + combo;
+    }
+
+    void calculateFullCombo()
+    {
+        for (int k = 0; k < totalBeats; k++)
+        {
+            for (int i = 0; i <= 3; i++)
+            {
+                if (notes[k, i] == 1)
+                {
+                    fullComboNumber++;
+                }
+            }
+        }
     }
 
     /// <summary>
