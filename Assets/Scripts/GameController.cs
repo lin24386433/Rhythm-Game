@@ -5,6 +5,32 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    public SongData data;
+
+    // Basic Setup
+    #region BasicSetUP
+    public string songName;
+
+    public int songBPM;
+
+    public float songLength;
+
+    public int[,] songNotes;
+
+    public int songDifficulty;
+
+    public int totalCombo;
+
+    public int totalScore;
+
+    // Player data
+    public int highCombo;
+
+    public int highScore;
+
+    public int playTimes;
+
+    #endregion
     // 譜面設定
     public int[,] notes = new int[804, 4]
     {
@@ -882,6 +908,11 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        //data.songName = "Gurenge";
+        //data.songBPM = 540;
+
+
+
         // 單例設定
         instance = this;
 

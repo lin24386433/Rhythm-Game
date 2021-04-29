@@ -9,7 +9,7 @@ public class Detecter : MonoBehaviour
 
     public SpriteRenderer sprites;
 
-    
+    public GameObject[] effects;
 
     public bool canDestroy = false;
 
@@ -60,23 +60,26 @@ public class Detecter : MonoBehaviour
             float timing = collision.transform.position.y - this.transform.position.y;
             if (timing < 0) timing *= -1;
 
-            if(timing <= 0.3f)
+            if(timing <= 0.5f)
             {
                 GameController.instance.timingTxt.text = "Perfect";
                 GameController.instance.timingTxt.color = Color.yellow;
                 GameController.instance.gameScore += 500;
+                Instantiate(effects[0], this.transform.position, this.transform.rotation);
             }
-            else if(timing <= 0.5f)
+            else if(timing <= 0.7f)
             {
                 GameController.instance.timingTxt.text = "Good";
                 GameController.instance.timingTxt.color = Color.green;
                 GameController.instance.gameScore += 300;
+                Instantiate(effects[1], this.transform.position, this.transform.rotation);
             }
-            else if(timing <= 0.7f)
+            else if(timing <= 0.9f)
             {
                 GameController.instance.timingTxt.text = "Bad";
                 GameController.instance.timingTxt.color = Color.red;
                 GameController.instance.gameScore += 100;
+                Instantiate(effects[2], this.transform.position, this.transform.rotation);
             }
 
             GameController.instance.combo++;

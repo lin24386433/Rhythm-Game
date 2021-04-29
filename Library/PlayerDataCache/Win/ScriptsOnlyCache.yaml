@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - Detecter
+    - Effect
     - GameController
     - Note
     Unity.2D.Animation.Editor.dll:
@@ -21,6 +22,11 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -45,6 +51,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 50
       Script: {instanceID: 0}
     - Class: 61
@@ -58,21 +66,31 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1828}
+      Script: {instanceID: 1782}
     - Class: 114
-      Script: {instanceID: 2074}
+      Script: {instanceID: 1856}
     - Class: 114
-      Script: {instanceID: 2444}
+      Script: {instanceID: 2094}
     - Class: 114
-      Script: {instanceID: 2590}
+      Script: {instanceID: 2102}
     - Class: 114
-      Script: {instanceID: 2760}
+      Script: {instanceID: 2472}
     - Class: 114
-      Script: {instanceID: 2970}
+      Script: {instanceID: 2618}
     - Class: 114
-      Script: {instanceID: 3336}
+      Script: {instanceID: 2788}
     - Class: 114
-      Script: {instanceID: 3744}
+      Script: {instanceID: 2998}
+    - Class: 114
+      Script: {instanceID: 3364}
+    - Class: 114
+      Script: {instanceID: 3772}
+    - Class: 114
+      Script: {instanceID: 4238}
+    - Class: 114
+      Script: {instanceID: 4566}
+    - Class: 114
+      Script: {instanceID: 16658}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -80,6 +98,10 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 212
       Script: {instanceID: 0}
@@ -176,6 +198,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_FontAsset
+  - hash:
+      serializedVersion: 2
+      Hash: b7ff3c7dc509f69917b554fef319adde
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Controller
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -376,7 +404,7 @@ ScriptsOnlyBuild:
     className: ContentSizeFitter
   - hash:
       serializedVersion: 2
-      Hash: 7c1cdc41b7b7aa5fd47e4090f23e3b76
+      Hash: 7a1f596f218897da19fddd72ca713ee7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameController
@@ -460,7 +488,7 @@ ScriptsOnlyBuild:
     className: EventTrigger
   - hash:
       serializedVersion: 2
-      Hash: 072cd11ff5808e165d57dd50e37391e5
+      Hash: ba043dfbd5407439e17bac76caa51e1d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Detecter
@@ -634,10 +662,10 @@ ScriptsOnlyBuild:
     className: FabrikSolver2D
   - hash:
       serializedVersion: 2
-      Hash: b7ff3c7dc509f69917b554fef319adde
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Controller
+    className: Effect
   platform: 5
   scenePathNames:
   - Assets/Scenes/GamePlayScene.unity
