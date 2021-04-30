@@ -1,0 +1,16 @@
+{
+    "songName": "Gurenge",
+    "songBPM": 540,
+    "songLength": 89.36489868164063,
+    "songNotesStrVer": "",
+    "songDifficulty": 5,
+    "totalCombo": 266,
+    "totalScore": 133000,
+    "backGroundImage": {
+        "m_FileID": 0,
+        "m_PathID": 0
+    },
+    "highCombo": 0,
+    "highScore": 0,
+    "playTimes": 0
+}

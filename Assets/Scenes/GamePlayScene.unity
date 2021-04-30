@@ -2173,11 +2173,12 @@ MonoBehaviour:
   - {fileID: 1068498577}
   gameScore: 0
   combo: 0
+  fullComboNumber: 0
   timingTxt: {fileID: 384205289}
   scoreTxt: {fileID: 9508997}
   comboTxt: {fileID: 1990992388}
   timeBeforeStart: 0
-  songBpm: 540
+  songBpm: 0
   totalBeats: 0
   secPerBeat: 0
   beatPerSec: 0

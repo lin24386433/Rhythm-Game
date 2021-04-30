@@ -9,6 +9,7 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
+    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.IK.Runtime.dll:
     - UnityEditor.U2D.IK.IKEditorManagerHelper
     Unity.2D.Tilemap.Editor.dll:
@@ -26,6 +27,8 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
+    Unity.Timeline.Editor.dll:
+    - TimelineProjectSettings
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -65,31 +68,31 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1804}
+      Script: {instanceID: 1808}
     - Class: 114
-      Script: {instanceID: 1878}
+      Script: {instanceID: 1882}
     - Class: 114
-      Script: {instanceID: 2116}
+      Script: {instanceID: 2120}
     - Class: 114
-      Script: {instanceID: 2124}
+      Script: {instanceID: 2128}
     - Class: 114
-      Script: {instanceID: 2494}
+      Script: {instanceID: 2498}
     - Class: 114
-      Script: {instanceID: 2546}
+      Script: {instanceID: 2550}
     - Class: 114
-      Script: {instanceID: 2642}
+      Script: {instanceID: 2646}
     - Class: 114
-      Script: {instanceID: 2812}
+      Script: {instanceID: 2816}
     - Class: 114
-      Script: {instanceID: 3022}
+      Script: {instanceID: 3026}
     - Class: 114
-      Script: {instanceID: 3388}
+      Script: {instanceID: 3392}
     - Class: 114
-      Script: {instanceID: 3796}
+      Script: {instanceID: 3800}
     - Class: 114
-      Script: {instanceID: 4262}
+      Script: {instanceID: 4266}
     - Class: 114
-      Script: {instanceID: 4592}
+      Script: {instanceID: 4596}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -409,7 +412,7 @@ ScriptsOnlyBuild:
     className: ContentSizeFitter
   - hash:
       serializedVersion: 2
-      Hash: 7a1f596f218897da19fddd72ca713ee7
+      Hash: 101a81ed0f1686177287a1c821ebd60e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameController
@@ -668,4 +671,4 @@ ScriptsOnlyBuild:
   platform: 5
   scenePathNames:
   - Assets/Scenes/GamePlayScene.unity
-  playerPath: /Users/lin/Desktop/Rhythm Game/build/game/Rhythm Game.exe
+  playerPath: C:/Users/lin/Desktop/Rhythm Game/build/Windows/Rhythm Game.exe
