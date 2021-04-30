@@ -11,7 +11,7 @@ public class SongData
 
     public float songLength;
 
-    public int[,] songNotes;
+    public string songNotesStrVer;
 
     public int songDifficulty;
 
@@ -27,4 +27,5 @@ public class SongData
     public int highScore;
 
     public int playTimes;
+
 }

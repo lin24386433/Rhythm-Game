@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class GameController : MonoBehaviour
 {
@@ -31,7 +32,9 @@ public class GameController : MonoBehaviour
     public int playTimes;
 
     #endregion
-    // ÃĞ­±³]©w
+
+
+    // ï¿½Ğ­ï¿½ï¿½]ï¿½w
     public int[,] notes = new int[804, 4]
     {
         {0,0,0,0},
@@ -841,24 +844,26 @@ public class GameController : MonoBehaviour
     };
 
     /// <summary>
-    /// ¹CÀ¸°òÂ¦ÅÜ¼Æ
+    /// ï¿½Cï¿½ï¿½ï¿½ï¿½Â¦ï¿½Ü¼ï¿½
     /// </summary>
     #region GameBasicVariables
 
-    // GameController ³æ¨Ò
+    // GameController ï¿½ï¿½ï¿½
     public static GameController instance;
 
-    // ­µ²ÅPrefab
+    // ï¿½ï¿½ï¿½ï¿½Prefab
     public GameObject notePrefab;
 
-    // 4­Ó§P©wÂI
+    // 4ï¿½Ó§Pï¿½wï¿½I
     public GameObject[] detectPoints;
 
-    // ¹CÀ¸¤À¼Æ¤Îcombo¼Æ
+    // ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Æ¤ï¿½comboï¿½ï¿½
     public int gameScore = 0;
     public int combo = 0;
 
-    // ¹CÀ¸UI
+    public int fullComboNumber;
+
+    // ï¿½Cï¿½ï¿½UI
     public Text timingTxt;
     public Text scoreTxt;
     public Text comboTxt;
@@ -866,23 +871,23 @@ public class GameController : MonoBehaviour
     #endregion
 
     /// <summary>
-    /// ­µ¼Ö¬ÛÃöÅÜ¼Æ
+    /// ï¿½ï¿½ï¿½Ö¬ï¿½ï¿½ï¿½ï¿½Ü¼ï¿½
     /// </summary>
     #region MusicVariables
 
-    // ­µ¼Ö¶}©l«eµ¥«İ®É¶¡
+    // ï¿½ï¿½ï¿½Ö¶}ï¿½lï¿½eï¿½ï¿½ï¿½İ®É¶ï¿½
     public float timeBeforeStart;
 
-    // ­µ¼ÖBPM
+    // ï¿½ï¿½ï¿½ï¿½BPM
     public float songBpm;
 
-    // Á`Beat¼Æ
+    // ï¿½`Beatï¿½ï¿½
     public int totalBeats;
 
-    // ¤@¬í´X­ÓBeat
+    // ï¿½@ï¿½ï¿½Xï¿½ï¿½Beat
     public float secPerBeat;
 
-    // ¤@­ÓBeat´X¬í
+    // ï¿½@ï¿½ï¿½Beatï¿½Xï¿½ï¿½
     public float beatPerSec;
 
     // Current song position, in seconds
@@ -890,7 +895,7 @@ public class GameController : MonoBehaviour
     public float songPosition;
 
     // Current song position, in beats
-    // ­µ¼Ö¼·©ñ¨ì²Ä´X­ÓBPM
+    // ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½ï¿½Ä´Xï¿½ï¿½BPM
     public float songPositionInBeats;
 
     public int beatNow;
@@ -901,43 +906,64 @@ public class GameController : MonoBehaviour
     // an AudioSource attached to this GameObject that will play the music.
     public AudioSource musicSource;
 
-    // ­µ¼Öªø«×
+    // ï¿½ï¿½ï¿½Öªï¿½ï¿½ï¿½
     public float musicLength;
 
     #endregion
 
     private void Start()
     {
-        //data.songName = "Gurenge";
-        //data.songBPM = 540;
-
-
-
-        // ³æ¨Ò³]©w
+        // ï¿½ï¿½Ò³]ï¿½w
         instance = this;
 
-        // ªì©l¤Æ­µ¼Ö³]©w
+        // ï¿½ï¿½lï¿½Æ­ï¿½ï¿½Ö³]ï¿½w
         MusicSetUP();
+
+        BasicSetUP();
+
+        
+        data = new SongData();
+        data.songName = "Gurenge";
+        data.songBPM = 540;
+        data.songNotesStrVer = "";
+        data.songLength = musicLength;
+        data.songDifficulty = 5;
+        data.totalCombo = fullComboNumber;
+        data.totalScore = fullComboNumber * 500;
+        data.highCombo = 0;
+        data.highScore = 0;
+        data.playTimes = 0;
+
+        string jsonInfo = JsonUtility.ToJson(data, true);
+
+        string path = Path.Combine(Application.dataPath, "data");
+        //path = Path.Combine(path, "Gurenge.txt");
+
+        File.WriteAllText(path, jsonInfo);
+        
+
+        Debug.Log("å¯«å…¥å®Œæˆ");
+        Debug.Log("dataPath: " + Application.dataPath);
 
     }
 
     void Update()
     {
-        // ­µ¼Ö°Ñ¼Æ§ó·s
+        // ï¿½ï¿½ï¿½Ö°Ñ¼Æ§ï¿½s
         MusicUpdate();
 
-        // ¥Í¦¨ÃĞ­±
+        // ï¿½Í¦ï¿½ï¿½Ğ­ï¿½
         SpawnNotes();
 
-        // §ó·sUI
+        // ï¿½ï¿½sUI
         UIUpdate();
     }
 
     /// <summary>
-    /// 1. ¨ú±oAudioSource
-    /// 2. Á`¦@´X­ÓBeats
-    /// 3. ¨C¬í´X­ÓBeat¡B¨CBeat´X¬í
-    /// 4. ­pºâ¨Ã­Ë¼Æµ¥«İ®É¶¡¼·©ñ­µ¼Ö
+    /// 1. ï¿½ï¿½ï¿½oAudioSource
+    /// 2. ï¿½`ï¿½@ï¿½Xï¿½ï¿½Beats
+    /// 3. ï¿½Cï¿½ï¿½Xï¿½ï¿½Beatï¿½Bï¿½CBeatï¿½Xï¿½ï¿½
+    /// 4. ï¿½pï¿½ï¿½Ã­Ë¼Æµï¿½ï¿½İ®É¶ï¿½ï¿½ï¿½ï¿½ñ­µ¼ï¿½
     /// </summary>
     void MusicSetUP()
     {
@@ -961,8 +987,13 @@ public class GameController : MonoBehaviour
         StartCoroutine(WaitForStart(timeBeforeStart));
     }
 
+    void BasicSetUP()
+    {
+        fullComboNumber = calculateFullCombo();
+    }
+
     /// <summary>
-    /// 1. §ó·s­µ¼Ö¼·©ñ¨ì²Ä´X¬í¡BBeat
+    /// 1. ï¿½ï¿½sï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½ï¿½Ä´Xï¿½ï¿½BBeat
     /// </summary>
     void MusicUpdate()
     {
@@ -976,7 +1007,7 @@ public class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// 1. ±N°}¦C¸ê®ÆÂà´«¦¨ÃĞ­±¥Í¦¨¦b³Ì¤W¤è
+    /// 1. ï¿½Nï¿½}ï¿½Cï¿½ï¿½ï¿½ï¿½à´«ï¿½ï¿½ï¿½Ğ­ï¿½ï¿½Í¦ï¿½ï¿½bï¿½Ì¤Wï¿½ï¿½
     /// </summary>
     void SpawnNotes()
     {
@@ -989,7 +1020,7 @@ public class GameController : MonoBehaviour
                     if (notes[k, i] == 1)
                     {
                         notes[k, i] = 0;
-                        // ((10 / secPerBeat) + 1) * secPerBeat¬O¹CÀ¸µe­±¥~ªºsecPerBeatªº³Ì¤p­¿¼Æ¦ì¸m
+                        // ((10 / secPerBeat) + 1) * secPerBeatï¿½Oï¿½Cï¿½ï¿½ï¿½eï¿½ï¿½ï¿½~ï¿½ï¿½secPerBeatï¿½ï¿½ï¿½Ì¤pï¿½ï¿½ï¿½Æ¦ï¿½m
                         Instantiate(notePrefab, detectPoints[i].transform.position + new Vector3(0, ((10 / secPerBeat) + 1) * secPerBeat, 0), detectPoints[i].transform.rotation);
                     }
                 }
@@ -997,8 +1028,24 @@ public class GameController : MonoBehaviour
         }
     }
 
+    int calculateFullCombo()
+    {
+        int x = 0;
+        for (int k = 0; k < totalBeats; k++)
+        {
+            for (int i = 0; i <= 3; i++)
+            {
+                if (notes[k, i] == 1)
+                {
+                    x++;
+                }
+            }
+        }
+        return x;
+    }
+
     /// <summary>
-    /// 1. §ó·sUI
+    /// 1. ï¿½ï¿½sUI
     /// </summary>
     void UIUpdate()
     {
@@ -1007,7 +1054,7 @@ public class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// 1. ­Ë¼ÆtimeToPlayMusic¬í¼·©ñ­µ¼Ö
+    /// 1. ï¿½Ë¼ï¿½timeToPlayMusicï¿½ï¿½ï¿½ï¿½ñ­µ¼ï¿½
     /// </summary>
     /// <param name="timeToPlayMusic"></param>
     /// <returns></returns>
