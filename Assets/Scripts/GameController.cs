@@ -50,6 +50,8 @@ public class GameController : MonoBehaviour
     // ����Prefab
     public GameObject notePrefab;
 
+    public GameObject longNotePrefab;
+
     // 4�ӧP�w�I
     public GameObject[] detectPoints;
 
@@ -112,6 +114,8 @@ public class GameController : MonoBehaviour
         SongLoadedFromJson();
 
         notes = StringToTwoDimensionalArray(loadedData.songNotesStrVer);
+
+        Debug.Log(loadedData.songNotesStrVer);
  
         songBpm = loadedData.songBPM;
 
@@ -203,6 +207,11 @@ public class GameController : MonoBehaviour
                         // ((10 / secPerBeat) + 1) * secPerBeat�O�C���e���~��secPerBeat���̤p���Ʀ�m
                         Instantiate(notePrefab, detectPoints[i].transform.position + new Vector3(0, ((10 / secPerBeat) + 1) * secPerBeat, 0), detectPoints[i].transform.rotation);
                     }
+                    if (notes[k, i] == 2)
+                    {
+                        notes[k, i] = 0;
+                        Instantiate(longNotePrefab, detectPoints[i].transform.position + new Vector3(0, ((10 / secPerBeat) + 1) * secPerBeat, 0), detectPoints[i].transform.rotation);
+                    }
                 }
             }
         }
@@ -270,6 +279,11 @@ public class GameController : MonoBehaviour
             else if (ch == '1')
             {
                 array[rowIndex, columnIndex] = 1;
+                columnIndex++;
+            }
+            else if (ch == '2')
+            {
+                array[rowIndex, columnIndex] = 2;
                 columnIndex++;
             }
             else if (ch == '}')
