@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class LongNote : MonoBehaviour
 {
+    public GameObject startNote;
+    public GameObject middleNote;
+    public GameObject endNote;
+
+    public float noteLength = 3f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +19,12 @@ public class LongNote : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(0, -(GameController.instance.beatPerSec) * Time.deltaTime, 0);
+        middleNote.transform.localScale = new Vector3(0.847f, noteLength, 1);
+
+        middleNote.transform.localPosition = startNote.transform.localPosition + new Vector3(0, noteLength / 2, 0);
+        endNote.transform.localPosition = startNote.transform.localPosition + new Vector3(0, noteLength, 0);
+
+        //transform.Translate(0, -(GameController.instance.beatPerSec) * Time.deltaTime, 0);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
