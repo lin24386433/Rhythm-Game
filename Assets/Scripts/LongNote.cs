@@ -8,7 +8,12 @@ public class LongNote : MonoBehaviour
     public GameObject middleNote;
     public GameObject endNote;
 
+    public bool OnFalling = true;
+    public bool OnKeeping = false;
+
     public float noteLength = 3f;
+
+    public float speed = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -19,12 +24,39 @@ public class LongNote : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        middleNote.transform.localScale = new Vector3(0.847f, noteLength, 1);
+        middleNote.transform.localScale = new Vector3(middleNote.transform.localScale.x, noteLength, middleNote.transform.localScale.z);
 
         middleNote.transform.localPosition = startNote.transform.localPosition + new Vector3(0, noteLength / 2, 0);
         endNote.transform.localPosition = startNote.transform.localPosition + new Vector3(0, noteLength, 0);
 
-        //transform.Translate(0, -(GameController.instance.beatPerSec) * Time.deltaTime, 0);
+
+        if (OnFalling)
+        {
+            OnFallingFunc();
+        }
+        else if (OnKeeping && noteLength >= -1f)
+        {
+            OnKeepingFunc();
+        }
+
+        if(noteLength <= -1f)
+        {
+            Destroy(this.gameObject);
+        }    
+        
+    }
+
+    void OnFallingFunc()
+    {
+        transform.Translate(0, -(GameController.instance.beatPerSec) * Time.deltaTime, 0);
+        //transform.Translate(0, -(speed) * Time.deltaTime, 0);
+    }
+
+    void OnKeepingFunc()
+    {
+        noteLength -= GameController.instance.beatPerSec * Time.deltaTime;
+        //noteLength -= speed * Time.deltaTime;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,7 +66,7 @@ public class LongNote : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        StartCoroutine(waittime(0.5f));
+        StartCoroutine(waittime(0f));
 
     }
 

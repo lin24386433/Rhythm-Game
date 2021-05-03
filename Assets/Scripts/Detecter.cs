@@ -18,7 +18,6 @@ public class Detecter : MonoBehaviour
     Color whiteAlphaFull;
     Color whiteAlphaHalf;
 
-    // Start is called before the first frame update
     void Start()
     {
         musicSource = GetComponent<AudioSource>();
@@ -32,7 +31,6 @@ public class Detecter : MonoBehaviour
         whiteAlphaHalf.a = 1f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         DetecterHandler();
@@ -60,37 +58,112 @@ public class Detecter : MonoBehaviour
             float timing = collision.transform.position.y - this.transform.position.y;
             if (timing < 0) timing *= -1;
 
-            if(timing <= 0.5f)
+            if (collision.tag == "Note")
             {
-                GameController.instance.timingTxt.text = "Perfect";
-                GameController.instance.timingTxt.color = Color.yellow;
-                GameController.instance.gameScore += 500;
+                if (timing <= 0.5f)
+                {
+                    GameController.instance.timingTxt.text = "Perfect";
+                    GameController.instance.timingTxt.color = Color.yellow;
+                    GameController.instance.gameScore += 500;
+                    Instantiate(effects[0], this.transform.position, this.transform.rotation);
+                }
+                else if (timing <= 0.7f)
+                {
+                    GameController.instance.timingTxt.text = "Good";
+                    GameController.instance.timingTxt.color = Color.green;
+                    GameController.instance.gameScore += 300;
+                    Instantiate(effects[1], this.transform.position, this.transform.rotation);
+                }
+                else if (timing <= 0.9f)
+                {
+                    GameController.instance.timingTxt.text = "Bad";
+                    GameController.instance.timingTxt.color = Color.red;
+                    GameController.instance.gameScore += 100;
+                    Instantiate(effects[2], this.transform.position, this.transform.rotation);
+                }
+
+                GameController.instance.combo++;
+                musicSource.Play();
+                Destroy(collision.gameObject);
+            }
+            else if(collision.tag == "LongNoteStart")
+            {
+                collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().OnFalling = false;
+                collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().OnKeeping = true;
+
+                if (timing <= 0.5f)
+                {
+                    GameController.instance.timingTxt.text = "Perfect";
+                    GameController.instance.timingTxt.color = Color.yellow;
+                    GameController.instance.gameScore += 500;
+                    Instantiate(effects[0], this.transform.position, this.transform.rotation);
+                    
+                }
+                else if (timing <= 0.7f)
+                {
+                    GameController.instance.timingTxt.text = "Good";
+                    GameController.instance.timingTxt.color = Color.green;
+                    GameController.instance.gameScore += 300;
+                    Instantiate(effects[1], this.transform.position, this.transform.rotation);
+                }
+                else if (timing <= 0.9f)
+                {
+                    GameController.instance.timingTxt.text = "Bad";
+                    GameController.instance.timingTxt.color = Color.red;
+                    GameController.instance.gameScore += 100;
+                    Instantiate(effects[2], this.transform.position, this.transform.rotation);
+                }
+
+                GameController.instance.combo++;
+                musicSource.Play();
+                collision.tag = "LongNoteStarted";
+
+            }
+            else if (collision.tag == "LongNoteMiddle")
+            {
                 Instantiate(effects[0], this.transform.position, this.transform.rotation);
             }
-            else if(timing <= 0.7f)
+        }
+        else
+        {
+            if (collision.tag == "LongNoteStarted" && collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().OnKeeping)
             {
-                GameController.instance.timingTxt.text = "Good";
-                GameController.instance.timingTxt.color = Color.green;
-                GameController.instance.gameScore += 300;
-                Instantiate(effects[1], this.transform.position, this.transform.rotation);
+                Destroy(collision.gameObject.transform.parent.gameObject);
+                
             }
-            else if(timing <= 0.9f)
+            if (collision.tag == "LongNoteEnd")
             {
-                GameController.instance.timingTxt.text = "Bad";
-                GameController.instance.timingTxt.color = Color.red;
-                GameController.instance.gameScore += 100;
-                Instantiate(effects[2], this.transform.position, this.transform.rotation);
-            }
+                float timing = collision.transform.position.y - this.transform.position.y;
+                if (timing < 0) timing *= -1;
 
-            GameController.instance.combo++;
-            musicSource.Play();
-            Destroy(collision.gameObject);
+                if (timing <= 0.5f)
+                {
+                    GameController.instance.timingTxt.text = "Perfect";
+                    GameController.instance.timingTxt.color = Color.yellow;
+                    GameController.instance.gameScore += 500;
+                    Instantiate(effects[0], this.transform.position, this.transform.rotation);
+                }
+                else if (timing <= 0.7f)
+                {
+                    GameController.instance.timingTxt.text = "Good";
+                    GameController.instance.timingTxt.color = Color.green;
+                    GameController.instance.gameScore += 300;
+                    Instantiate(effects[1], this.transform.position, this.transform.rotation);
+                }
+                else if (timing <= 0.9f)
+                {
+                    GameController.instance.timingTxt.text = "Bad";
+                    GameController.instance.timingTxt.color = Color.red;
+                    GameController.instance.gameScore += 100;
+                    Instantiate(effects[2], this.transform.position, this.transform.rotation);
+                }
+
+                GameController.instance.combo++;
+                musicSource.Play();
+            }
         }
         
-        /*
-        musicSource.Play();
-        Destroy(collision.gameObject);
-        */
+
     }
 
 }

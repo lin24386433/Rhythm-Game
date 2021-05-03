@@ -4,6 +4,7 @@ ScriptsOnlyBuild:
     - Detecter
     - Effect
     - GameController
+    - LongNote
     - Note
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
@@ -27,8 +28,6 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
-    Unity.Timeline.Editor.dll:
-    - TimelineProjectSettings
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -68,31 +67,33 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1808}
+      Script: {instanceID: 1782}
     - Class: 114
-      Script: {instanceID: 1882}
+      Script: {instanceID: 1856}
     - Class: 114
-      Script: {instanceID: 2120}
+      Script: {instanceID: 2094}
     - Class: 114
-      Script: {instanceID: 2128}
+      Script: {instanceID: 2102}
     - Class: 114
-      Script: {instanceID: 2498}
+      Script: {instanceID: 2110}
     - Class: 114
-      Script: {instanceID: 2550}
+      Script: {instanceID: 2474}
     - Class: 114
-      Script: {instanceID: 2646}
+      Script: {instanceID: 2526}
     - Class: 114
-      Script: {instanceID: 2816}
+      Script: {instanceID: 2622}
     - Class: 114
-      Script: {instanceID: 3026}
+      Script: {instanceID: 2792}
     - Class: 114
-      Script: {instanceID: 3392}
+      Script: {instanceID: 3002}
     - Class: 114
-      Script: {instanceID: 3800}
+      Script: {instanceID: 3368}
     - Class: 114
-      Script: {instanceID: 4266}
+      Script: {instanceID: 3776}
     - Class: 114
-      Script: {instanceID: 4596}
+      Script: {instanceID: 4242}
+    - Class: 114
+      Script: {instanceID: 4572}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -230,6 +231,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Text
+  - hash:
+      serializedVersion: 2
+      Hash: 5b31af290dfe0a17b5cc22f4327a86fb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LongNote
   - hash:
       serializedVersion: 2
       Hash: f1d735cc1a21c3704ab52568f4fbfcf8
@@ -412,7 +419,7 @@ ScriptsOnlyBuild:
     className: ContentSizeFitter
   - hash:
       serializedVersion: 2
-      Hash: 101a81ed0f1686177287a1c821ebd60e
+      Hash: 734af243da467b5ca8da403e32cd2046
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameController
@@ -634,7 +641,7 @@ ScriptsOnlyBuild:
     className: TMP_ScrollbarEventHandler
   - hash:
       serializedVersion: 2
-      Hash: 35566dee0cbbf9eb2cde7e792c217eb8
+      Hash: 4280b246790a920f9ad71c035b7cd7dd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Recorder
