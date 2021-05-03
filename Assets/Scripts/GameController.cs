@@ -44,12 +44,12 @@ public class GameController : MonoBehaviour
 {0,0,0,0},
 {0,0,0,0},
 {0,0,0,0},
-{0,2,0,0},
+{0,2,0,1},
 {0,0,0,0},
 {0,0,0,0},
 {0,0,1,0},
 {0,0,0,0},
-{0,2,0,0},
+{0,2,0,1},
 {0,0,0,0},
 {0,0,0,0},
 {0,0,0,0},
@@ -1029,7 +1029,8 @@ public class GameController : MonoBehaviour
                             howManyBeatsForLongNote++;
                         }
 
-                        GameObject longNoteSpawned = Instantiate(longNotePrefab, detectPoints[i].transform.position + new Vector3(0, ((10 / secPerBeat) + 1) * secPerBeat + (howManyBeatsForLongNote / 2), 0), detectPoints[i].transform.rotation);
+
+                        GameObject longNoteSpawned = Instantiate(longNotePrefab, detectPoints[i].transform.position + new Vector3(0, ((10 / secPerBeat) + 1) * secPerBeat, 0), detectPoints[i].transform.rotation);
                         longNoteSpawned.GetComponent<LongNote>().noteLength = howManyBeatsForLongNote * 1;
                         
                     }

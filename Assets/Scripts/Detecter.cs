@@ -15,6 +15,10 @@ public class Detecter : MonoBehaviour
 
     public KeyCode keyCodes;
 
+    public float perfectTiming = 0.5f;
+    public float goodTiming = 0.7f;
+    public float badTiming = 0.9f;
+
     Color whiteAlphaFull;
     Color whiteAlphaHalf;
 
@@ -60,21 +64,21 @@ public class Detecter : MonoBehaviour
 
             if (collision.tag == "Note")
             {
-                if (timing <= 0.5f)
+                if (timing <= perfectTiming)
                 {
                     GameController.instance.timingTxt.text = "Perfect";
                     GameController.instance.timingTxt.color = Color.yellow;
                     GameController.instance.gameScore += 500;
                     Instantiate(effects[0], this.transform.position, this.transform.rotation);
                 }
-                else if (timing <= 0.7f)
+                else if (timing <= goodTiming)
                 {
                     GameController.instance.timingTxt.text = "Good";
                     GameController.instance.timingTxt.color = Color.green;
                     GameController.instance.gameScore += 300;
                     Instantiate(effects[1], this.transform.position, this.transform.rotation);
                 }
-                else if (timing <= 0.9f)
+                else if (timing <= badTiming)
                 {
                     GameController.instance.timingTxt.text = "Bad";
                     GameController.instance.timingTxt.color = Color.red;
@@ -89,9 +93,16 @@ public class Detecter : MonoBehaviour
             else if(collision.tag == "LongNoteStart")
             {
                 collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().OnFalling = false;
-                collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().OnKeeping = true;
+                collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().OnHolding = true;
 
-                if (timing <= 0.5f)
+                if(collision.transform.position.y - this.transform.position.y >= 0)
+                    collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().noteLength += timing;
+                else
+                    collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().noteLength -= timing;
+
+                collision.gameObject.transform.parent.gameObject.transform.position = this.transform.position;
+
+                if (timing <= perfectTiming)
                 {
                     GameController.instance.timingTxt.text = "Perfect";
                     GameController.instance.timingTxt.color = Color.yellow;
@@ -99,14 +110,14 @@ public class Detecter : MonoBehaviour
                     Instantiate(effects[0], this.transform.position, this.transform.rotation);
                     
                 }
-                else if (timing <= 0.7f)
+                else if (timing <= goodTiming)
                 {
                     GameController.instance.timingTxt.text = "Good";
                     GameController.instance.timingTxt.color = Color.green;
                     GameController.instance.gameScore += 300;
                     Instantiate(effects[1], this.transform.position, this.transform.rotation);
                 }
-                else if (timing <= 0.9f)
+                else if (timing <= badTiming)
                 {
                     GameController.instance.timingTxt.text = "Bad";
                     GameController.instance.timingTxt.color = Color.red;
@@ -122,13 +133,21 @@ public class Detecter : MonoBehaviour
             else if (collision.tag == "LongNoteMiddle")
             {
                 Instantiate(effects[0], this.transform.position, this.transform.rotation);
+                //GameController.instance.gameScore += 17;
             }
         }
         else
         {
-            if (collision.tag == "LongNoteStarted" && collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().OnKeeping)
+            if (collision.tag == "LongNoteStarted" && collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().OnHolding)
             {
                 Destroy(collision.gameObject.transform.parent.gameObject);
+
+                if(collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().noteLength >= 0.5f)
+                {
+                    GameController.instance.combo = 0;
+                    GameController.instance.timingTxt.text = "Miss";
+                    GameController.instance.timingTxt.color = Color.white;
+                }
                 
             }
             if (collision.tag == "LongNoteEnd")
@@ -136,21 +155,21 @@ public class Detecter : MonoBehaviour
                 float timing = collision.transform.position.y - this.transform.position.y;
                 if (timing < 0) timing *= -1;
 
-                if (timing <= 0.5f)
+                if (timing <= perfectTiming)
                 {
                     GameController.instance.timingTxt.text = "Perfect";
                     GameController.instance.timingTxt.color = Color.yellow;
                     GameController.instance.gameScore += 500;
                     Instantiate(effects[0], this.transform.position, this.transform.rotation);
                 }
-                else if (timing <= 0.7f)
+                else if (timing <= goodTiming)
                 {
                     GameController.instance.timingTxt.text = "Good";
                     GameController.instance.timingTxt.color = Color.green;
                     GameController.instance.gameScore += 300;
                     Instantiate(effects[1], this.transform.position, this.transform.rotation);
                 }
-                else if (timing <= 0.9f)
+                else if (timing <= badTiming)
                 {
                     GameController.instance.timingTxt.text = "Bad";
                     GameController.instance.timingTxt.color = Color.red;

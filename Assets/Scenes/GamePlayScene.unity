@@ -333,6 +333,9 @@ MonoBehaviour:
   - {fileID: 723556615046334444, guid: 1ed1274ba84032944bd6193c7abe652b, type: 3}
   canDestroy: 0
   keyCodes: 120
+  perfectTiming: 0.5
+  goodTiming: 0.7
+  badTiming: 0.9
 --- !u!50 &263610718
 Rigidbody2D:
   serializedVersion: 4
@@ -925,6 +928,9 @@ MonoBehaviour:
   - {fileID: 723556615046334444, guid: 1ed1274ba84032944bd6193c7abe652b, type: 3}
   canDestroy: 0
   keyCodes: 99
+  perfectTiming: 0.5
+  goodTiming: 0.7
+  badTiming: 0.9
 --- !u!50 &637283820
 Rigidbody2D:
   serializedVersion: 4
@@ -1337,6 +1343,9 @@ MonoBehaviour:
   - {fileID: 723556615046334444, guid: 1ed1274ba84032944bd6193c7abe652b, type: 3}
   canDestroy: 0
   keyCodes: 118
+  perfectTiming: 0.5
+  goodTiming: 0.7
+  badTiming: 0.9
 --- !u!50 &1068498582
 Rigidbody2D:
   serializedVersion: 4
@@ -1846,7 +1855,7 @@ MonoBehaviour:
   highScore: 0
   playTimes: 0
   notePrefab: {fileID: 5012843053647514344, guid: b6890c49f0e3616429f17d5e7b708b49, type: 3}
-  longNotePrefab: {fileID: 615797792124201855, guid: 0de093451f558444eacbfe57b46e3766, type: 3}
+  longNotePrefab: {fileID: 6144949759689359194, guid: 0de093451f558444eacbfe57b46e3766, type: 3}
   detectPoints:
   - {fileID: 1317794284}
   - {fileID: 263610713}
@@ -2186,6 +2195,18 @@ PrefabInstance:
     - target: {fileID: 677948520655423049, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
+      propertyPath: badTiming
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
+      propertyPath: goodTiming
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
+      propertyPath: perfectTiming
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}

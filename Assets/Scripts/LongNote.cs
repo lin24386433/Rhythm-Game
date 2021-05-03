@@ -9,11 +9,11 @@ public class LongNote : MonoBehaviour
     public GameObject endNote;
 
     public bool OnFalling = true;
-    public bool OnKeeping = false;
+    public bool OnHolding = false;
 
     public float noteLength = 3f;
 
-    public float speed = 3f;
+    //public float speed = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +34,9 @@ public class LongNote : MonoBehaviour
         {
             OnFallingFunc();
         }
-        else if (OnKeeping && noteLength >= -1f)
+        else if (OnHolding && noteLength >= -1f)
         {
-            OnKeepingFunc();
+            OnHoldingFunc();
         }
 
         if(noteLength <= -1f)
@@ -52,7 +52,7 @@ public class LongNote : MonoBehaviour
         //transform.Translate(0, -(speed) * Time.deltaTime, 0);
     }
 
-    void OnKeepingFunc()
+    void OnHoldingFunc()
     {
         noteLength -= GameController.instance.beatPerSec * Time.deltaTime;
         //noteLength -= speed * Time.deltaTime;
