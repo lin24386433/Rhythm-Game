@@ -233,7 +233,7 @@ ScriptsOnlyBuild:
     className: Text
   - hash:
       serializedVersion: 2
-      Hash: 5b31af290dfe0a17b5cc22f4327a86fb
+      Hash: 385a1382c9f3ca490609e335d1c05a07
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LongNote
@@ -503,7 +503,7 @@ ScriptsOnlyBuild:
     className: EventTrigger
   - hash:
       serializedVersion: 2
-      Hash: ba043dfbd5407439e17bac76caa51e1d
+      Hash: 8ee7ddbe8bd5acce543205031c098819
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Detecter

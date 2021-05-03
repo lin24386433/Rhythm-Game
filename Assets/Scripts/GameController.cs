@@ -918,11 +918,12 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        SongLoadedFromJson();
+        //SongLoadedFromJson();
 
         //notes = StringToTwoDimensionalArray(loadedData.songNotesStrVer);
  
-        songBpm = loadedData.songBPM;
+        //songBpm = loadedData.songBPM;
+        songBpm = 540;
 
         // ��ҳ]�w
         instance = this;
