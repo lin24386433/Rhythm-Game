@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - Effect
     - GameController
     - LongNote
+    - MissDetecter
     - Note
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
@@ -94,6 +95,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 4242}
     - Class: 114
       Script: {instanceID: 4572}
+    - Class: 114
+      Script: {instanceID: 26024}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -419,7 +422,7 @@ ScriptsOnlyBuild:
     className: ContentSizeFitter
   - hash:
       serializedVersion: 2
-      Hash: 734af243da467b5ca8da403e32cd2046
+      Hash: 4045322cc71b6980b0042c4a1cd9a9fa
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameController
@@ -675,6 +678,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.IK.Runtime.dll
     namespaceName: UnityEngine.U2D.IK
     className: FabrikSolver2D
+  - hash:
+      serializedVersion: 2
+      Hash: dc445f04d9ac7ad7e7a7ecdc2198281a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MissDetecter
   platform: 5
   scenePathNames:
   - Assets/Scenes/GamePlayScene.unity

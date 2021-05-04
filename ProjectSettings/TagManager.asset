@@ -9,6 +9,7 @@ TagManager:
   - LongNoteEnd
   - LongNoteMiddle
   - LongNoteStarted
+  - LongNote
   layers:
   - Default
   - TransparentFX

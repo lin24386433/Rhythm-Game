@@ -13,15 +13,7 @@ public class LongNote : MonoBehaviour
 
     public float noteLength = 3f;
 
-    //public float speed = 3f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         middleNote.transform.localScale = new Vector3(middleNote.transform.localScale.x, noteLength, middleNote.transform.localScale.z);
@@ -59,23 +51,4 @@ public class LongNote : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        StartCoroutine(waittime(0f));
-
-    }
-
-    IEnumerator waittime(float mytime)
-    {
-        yield return new WaitForSeconds(mytime); // ����x��
-        GameController.instance.combo = 0;
-        GameController.instance.timingTxt.text = "Miss";
-        GameController.instance.timingTxt.color = Color.white;
-        Destroy(this.gameObject);
-    }
 }

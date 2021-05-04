@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Detecter.cs" />
     <Compile Include="Assets\Scripts\SongData.cs" />
     <Compile Include="Assets\Scripts\Recorder.cs" />
+    <Compile Include="Assets\MissDetecter.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

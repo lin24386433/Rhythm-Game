@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -66,22 +66,16 @@ public class Detecter : MonoBehaviour
             {
                 if (timing <= perfectTiming)
                 {
-                    GameController.instance.timingTxt.text = "Perfect";
-                    GameController.instance.timingTxt.color = Color.yellow;
                     GameController.instance.gameScore += 500;
                     Instantiate(effects[0], this.transform.position, this.transform.rotation);
                 }
                 else if (timing <= goodTiming)
                 {
-                    GameController.instance.timingTxt.text = "Good";
-                    GameController.instance.timingTxt.color = Color.green;
                     GameController.instance.gameScore += 300;
                     Instantiate(effects[1], this.transform.position, this.transform.rotation);
                 }
                 else if (timing <= badTiming)
                 {
-                    GameController.instance.timingTxt.text = "Bad";
-                    GameController.instance.timingTxt.color = Color.red;
                     GameController.instance.gameScore += 100;
                     Instantiate(effects[2], this.transform.position, this.transform.rotation);
                 }
@@ -104,23 +98,17 @@ public class Detecter : MonoBehaviour
 
                 if (timing <= perfectTiming)
                 {
-                    GameController.instance.timingTxt.text = "Perfect";
-                    GameController.instance.timingTxt.color = Color.yellow;
                     GameController.instance.gameScore += 500;
                     Instantiate(effects[0], this.transform.position, this.transform.rotation);
                     
                 }
                 else if (timing <= goodTiming)
                 {
-                    GameController.instance.timingTxt.text = "Good";
-                    GameController.instance.timingTxt.color = Color.green;
                     GameController.instance.gameScore += 300;
                     Instantiate(effects[1], this.transform.position, this.transform.rotation);
                 }
                 else if (timing <= badTiming)
                 {
-                    GameController.instance.timingTxt.text = "Bad";
-                    GameController.instance.timingTxt.color = Color.red;
                     GameController.instance.gameScore += 100;
                     Instantiate(effects[2], this.transform.position, this.transform.rotation);
                 }
@@ -132,7 +120,7 @@ public class Detecter : MonoBehaviour
             }
             else if (collision.tag == "LongNoteMiddle")
             {
-                Instantiate(effects[0], this.transform.position, this.transform.rotation);
+                Instantiate(effects[4], this.transform.position, this.transform.rotation);
                 //GameController.instance.gameScore += 17;
             }
         }
@@ -145,8 +133,7 @@ public class Detecter : MonoBehaviour
                 if(collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().noteLength >= 0.5f)
                 {
                     GameController.instance.combo = 0;
-                    GameController.instance.timingTxt.text = "Miss";
-                    GameController.instance.timingTxt.color = Color.white;
+                    Instantiate(effects[3], new Vector2(this.transform.position.x, -4.5f), this.transform.rotation);
                 }
                 
             }
@@ -157,22 +144,16 @@ public class Detecter : MonoBehaviour
 
                 if (timing <= perfectTiming)
                 {
-                    GameController.instance.timingTxt.text = "Perfect";
-                    GameController.instance.timingTxt.color = Color.yellow;
                     GameController.instance.gameScore += 500;
                     Instantiate(effects[0], this.transform.position, this.transform.rotation);
                 }
                 else if (timing <= goodTiming)
                 {
-                    GameController.instance.timingTxt.text = "Good";
-                    GameController.instance.timingTxt.color = Color.green;
                     GameController.instance.gameScore += 300;
                     Instantiate(effects[1], this.transform.position, this.transform.rotation);
                 }
                 else if (timing <= badTiming)
                 {
-                    GameController.instance.timingTxt.text = "Bad";
-                    GameController.instance.timingTxt.color = Color.red;
                     GameController.instance.gameScore += 100;
                     Instantiate(effects[2], this.transform.position, this.transform.rotation);
                 }
@@ -182,7 +163,6 @@ public class Detecter : MonoBehaviour
             }
         }
         
-
     }
 
 }

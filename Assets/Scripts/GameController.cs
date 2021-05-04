@@ -869,7 +869,6 @@ public class GameController : MonoBehaviour
     public int fullComboNumber;
 
     // �C��UI
-    public Text timingTxt;
     public Text scoreTxt;
     public Text comboTxt;
 
@@ -1163,8 +1162,8 @@ public class GameController : MonoBehaviour
     /// </summary>
     void UIUpdate()
     {
-        scoreTxt.text = "Score : " + gameScore;
-        comboTxt.text = "Combo : " + combo;
+        scoreTxt.text = gameScore.ToString();
+        comboTxt.text = combo.ToString();
     }
 
     /// <summary>
