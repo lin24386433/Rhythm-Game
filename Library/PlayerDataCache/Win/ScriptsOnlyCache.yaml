@@ -11,7 +11,6 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
-    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.IK.Runtime.dll:
     - UnityEditor.U2D.IK.IKEditorManagerHelper
     Unity.2D.Tilemap.Editor.dll:
@@ -38,6 +37,8 @@ ScriptsOnlyBuild:
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.Image
+    - UnityEngine.UI.Outline
     - UnityEngine.UI.Text
   sceneClasses:
     Assets/Scenes/GamePlayScene.unity:
@@ -68,35 +69,39 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1782}
+      Script: {instanceID: 1544}
     - Class: 114
-      Script: {instanceID: 1856}
+      Script: {instanceID: 1814}
     - Class: 114
-      Script: {instanceID: 2094}
+      Script: {instanceID: 1888}
     - Class: 114
-      Script: {instanceID: 2102}
+      Script: {instanceID: 2126}
     - Class: 114
-      Script: {instanceID: 2110}
+      Script: {instanceID: 2134}
     - Class: 114
-      Script: {instanceID: 2474}
+      Script: {instanceID: 2142}
     - Class: 114
-      Script: {instanceID: 2526}
+      Script: {instanceID: 2506}
     - Class: 114
-      Script: {instanceID: 2622}
+      Script: {instanceID: 2558}
     - Class: 114
-      Script: {instanceID: 2792}
+      Script: {instanceID: 2654}
     - Class: 114
-      Script: {instanceID: 3002}
+      Script: {instanceID: 2824}
     - Class: 114
-      Script: {instanceID: 3368}
+      Script: {instanceID: 3034}
     - Class: 114
-      Script: {instanceID: 3776}
+      Script: {instanceID: 3172}
     - Class: 114
-      Script: {instanceID: 4242}
+      Script: {instanceID: 3402}
     - Class: 114
-      Script: {instanceID: 4572}
+      Script: {instanceID: 3406}
     - Class: 114
-      Script: {instanceID: 26024}
+      Script: {instanceID: 3810}
+    - Class: 114
+      Script: {instanceID: 4276}
+    - Class: 114
+      Script: {instanceID: 4606}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -410,6 +415,12 @@ ScriptsOnlyBuild:
     className: SpriteShapeController
   - hash:
       serializedVersion: 2
+      Hash: dc445f04d9ac7ad7e7a7ecdc2198281a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MissDetecter
+  - hash:
+      serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -506,7 +517,7 @@ ScriptsOnlyBuild:
     className: EventTrigger
   - hash:
       serializedVersion: 2
-      Hash: 8ee7ddbe8bd5acce543205031c098819
+      Hash: d9ae926edbe1199ff86bc8cc2d5567d9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Detecter
@@ -678,12 +689,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.IK.Runtime.dll
     namespaceName: UnityEngine.U2D.IK
     className: FabrikSolver2D
-  - hash:
-      serializedVersion: 2
-      Hash: dc445f04d9ac7ad7e7a7ecdc2198281a
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MissDetecter
   platform: 5
   scenePathNames:
   - Assets/Scenes/GamePlayScene.unity
