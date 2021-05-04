@@ -11,6 +11,9 @@ public class Detecter : MonoBehaviour
 
     public GameObject[] effects;
 
+    public GameObject light;
+    public GameObject lightBG;
+
     public bool canDestroy = false;
 
     public KeyCode keyCodes;
@@ -26,6 +29,10 @@ public class Detecter : MonoBehaviour
     {
         musicSource = GetComponent<AudioSource>();
 
+        light.SetActive(false);
+        lightBG.SetActive(false);
+
+        /*
         sprites = GetComponent<SpriteRenderer>();
 
         whiteAlphaFull = Color.white;
@@ -33,6 +40,7 @@ public class Detecter : MonoBehaviour
 
         whiteAlphaHalf = Color.white;
         whiteAlphaHalf.a = 1f;
+        */
     }
 
     void Update()
@@ -44,12 +52,16 @@ public class Detecter : MonoBehaviour
     {
         if (Input.GetKeyDown(keyCodes))
         {
-            sprites.color = whiteAlphaFull;
+            light.SetActive(true);
+            lightBG.SetActive(true);
+            //sprites.color = whiteAlphaFull;
             canDestroy = true;
         }
         if (Input.GetKeyUp(keyCodes))
         {
-            sprites.color = whiteAlphaHalf;
+            light.SetActive(false);
+            lightBG.SetActive(false);
+            //sprites.color = whiteAlphaHalf;
             canDestroy = false;
         }
     }
