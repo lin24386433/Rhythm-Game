@@ -11,6 +11,7 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
+    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.IK.Runtime.dll:
     - UnityEditor.U2D.IK.IKEditorManagerHelper
     Unity.2D.Tilemap.Editor.dll:
@@ -101,7 +102,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4276}
     - Class: 114
-      Script: {instanceID: 4606}
+      Script: {instanceID: 4608}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -517,7 +518,7 @@ ScriptsOnlyBuild:
     className: EventTrigger
   - hash:
       serializedVersion: 2
-      Hash: d9ae926edbe1199ff86bc8cc2d5567d9
+      Hash: 5d786791adffa71613f4ba78adbf8256
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Detecter
@@ -625,6 +626,12 @@ ScriptsOnlyBuild:
     className: SpriteSkinEntity
   - hash:
       serializedVersion: 2
+      Hash: 12a69d833ac4229410a8dd1af16aaed9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EpicBeat
+  - hash:
+      serializedVersion: 2
       Hash: 28cfb4bd305dd11c6326cc3ee7c14138
     assemblyName: Unity.2D.Animation.Runtime.dll
     namespaceName: UnityEngine.Experimental.U2D.Animation
@@ -673,6 +680,12 @@ ScriptsOnlyBuild:
     className: ActivationPlayableAsset
   - hash:
       serializedVersion: 2
+      Hash: 3c39d85fdd739247104b61d2ea5359b9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EpicRecorder
+  - hash:
+      serializedVersion: 2
       Hash: 7ab0e790220bdca831fdd886b339039d
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -689,6 +702,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.IK.Runtime.dll
     namespaceName: UnityEngine.U2D.IK
     className: FabrikSolver2D
+  - hash:
+      serializedVersion: 2
+      Hash: 7dfc11c8e69573fb2f96f6894cf9e3bc
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EpicDetecter
   platform: 5
   scenePathNames:
   - Assets/Scenes/GamePlayScene.unity
