@@ -7,11 +7,9 @@ public class Detecter : MonoBehaviour
 {
     AudioSource musicSource;
 
-    public SpriteRenderer sprites;
-
     public GameObject[] effects;
 
-    public GameObject light;
+    public GameObject lightEffect;
     public GameObject lightBG;
 
     public bool canDestroy = false;
@@ -22,25 +20,13 @@ public class Detecter : MonoBehaviour
     public float goodTiming = 0.7f;
     public float badTiming = 0.9f;
 
-    Color whiteAlphaFull;
-    Color whiteAlphaHalf;
 
     void Start()
     {
         musicSource = GetComponent<AudioSource>();
 
-        light.SetActive(false);
+        lightEffect.SetActive(false);
         lightBG.SetActive(false);
-
-        /*
-        sprites = GetComponent<SpriteRenderer>();
-
-        whiteAlphaFull = Color.white;
-        whiteAlphaFull.a = 0.7f;
-
-        whiteAlphaHalf = Color.white;
-        whiteAlphaHalf.a = 1f;
-        */
     }
 
     void Update()
@@ -52,23 +38,23 @@ public class Detecter : MonoBehaviour
     {
         if (Input.GetKeyDown(keyCodes))
         {
-            light.SetActive(true);
+            lightEffect.SetActive(true);
             lightBG.SetActive(true);
-            //sprites.color = whiteAlphaFull;
+
             canDestroy = true;
         }
         if (Input.GetKeyUp(keyCodes))
         {
-            light.SetActive(false);
+            lightEffect.SetActive(false);
             lightBG.SetActive(false);
-            //sprites.color = whiteAlphaHalf;
+
             canDestroy = false;
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        
+        // canDestroy is true
         if (canDestroy)
         {
             float timing = collision.transform.position.y - this.transform.position.y;
@@ -101,6 +87,7 @@ public class Detecter : MonoBehaviour
                 collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().OnFalling = false;
                 collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().OnHolding = true;
 
+                // to keep long note's length when timeing isn't accurate at all
                 if(collision.transform.position.y - this.transform.position.y >= 0)
                     collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().noteLength += timing;
                 else
@@ -136,7 +123,8 @@ public class Detecter : MonoBehaviour
                 //GameController.instance.gameScore += 17;
             }
         }
-        else
+        // canDestroy is false
+        else            
         {
             if (collision.tag == "LongNoteStarted" && collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().OnHolding)
             {

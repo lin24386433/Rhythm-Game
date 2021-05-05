@@ -5,28 +5,28 @@ using UnityEngine.UI;
 
 public class Recorder : MonoBehaviour
 {
-    //Song beats per minute
-    //This is determined by the song you're trying to sync up to
+    // Song beats per minute
+    // This is determined by the song you're trying to sync up to
     public float songBpm;
 
-    //The number of seconds for each song beat
+    // The number of seconds for each song beat
     public float secPerBeat;
 
-    //The number of beats for each second
+    // The number of beats for each second
     public float beatPerSec;
 
-    //Current song position, in seconds
+    // Current song position, in seconds
     public float songPosition;
 
-    //Current song position, in beats
+    // Current song position, in beats
     public float songPositionInBeats;
 
     public int beatNow;
 
-    //How many seconds have passed since the song started
+    // How many seconds have passed since the song started
     public float dspSongTime;
 
-    //an AudioSource attached to this GameObject that will play the music.
+    // an AudioSource attached to this GameObject that will play the music.
     public AudioSource musicSource;
 
     public float time;

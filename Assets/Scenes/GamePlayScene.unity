@@ -886,6 +886,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &661511696 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5398146885686928769, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
+  m_PrefabInstance: {fileID: 1405027759}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &703810434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,6 +1132,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &784046301 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5398146885686928769, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
+  m_PrefabInstance: {fileID: 992283473}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &925131700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1190,6 +1200,10 @@ PrefabInstance:
       propertyPath: keyCodes
       value: 99
       objectReference: {fileID: 0}
+    - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
+      propertyPath: lightEffect
+      value: 
+      objectReference: {fileID: 1779014719}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: effects.Array.size
       value: 5
@@ -1263,6 +1277,10 @@ PrefabInstance:
       propertyPath: lightBG
       value: 
       objectReference: {fileID: 1309625909}
+    - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
+      propertyPath: lightEffect
+      value: 
+      objectReference: {fileID: 784046301}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: effects.Array.size
       value: 5
@@ -1764,6 +1782,10 @@ PrefabInstance:
       value: 118
       objectReference: {fileID: 0}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
+      propertyPath: lightEffect
+      value: 
+      objectReference: {fileID: 1437612297}
+    - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: effects.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -1876,6 +1898,10 @@ PrefabInstance:
       value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
+      propertyPath: lightEffect
+      value: 
+      objectReference: {fileID: 661511696}
+    - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: effects.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -1966,6 +1992,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435974008}
   m_CullTransparentMesh: 1
+--- !u!1 &1437612297 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5398146885686928769, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
+  m_PrefabInstance: {fileID: 1345739114}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1563749973
 GameObject:
   m_ObjectHideFlags: 0
@@ -2263,6 +2294,11 @@ Transform:
   m_Father: {fileID: 1570756953}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1779014719 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5398146885686928769, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
+  m_PrefabInstance: {fileID: 925131700}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1803552842
 GameObject:
   m_ObjectHideFlags: 0

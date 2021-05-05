@@ -18,6 +18,8 @@ public class LongNote : MonoBehaviour
     {
         middleNote.transform.localScale = new Vector3(middleNote.transform.localScale.x, noteLength, middleNote.transform.localScale.z);
 
+
+
         middleNote.transform.localPosition = startNote.transform.localPosition + new Vector3(0, noteLength / 2, 0);
         endNote.transform.localPosition = startNote.transform.localPosition + new Vector3(0, noteLength, 0);
 
