@@ -845,10 +845,6 @@ public class EpicRecorder : MonoBehaviour
 {0,0,0,0}
     };
 
-    public Slider musicSlider;
-
-    public Text bpmNowText;
-
     public bool OnPlay = false;
 
     public List<EpicBeat> allEpicBeats;
@@ -856,6 +852,13 @@ public class EpicRecorder : MonoBehaviour
     public GameObject epicBeatPrefab;
 
     public GameObject allSongBeats;
+
+    // UI
+    public Slider musicSlider;
+
+    public Text bpmNowText;
+
+    public InputField songBPMInput;
 
 
     void Start()
@@ -950,6 +953,7 @@ public class EpicRecorder : MonoBehaviour
     }
     #endregion
 
+    #region FUNC:record
     void record(int bpm)
     {
         if (bpm == totalBeats) return;
@@ -1037,10 +1041,8 @@ public class EpicRecorder : MonoBehaviour
                 allEpicBeats[bpm].longNotes[3].SetActive(false);
             }
         }
-
-
-
     }
+    #endregion
 
     public void OnSliderValueChanged()
     {
@@ -1076,6 +1078,13 @@ public class EpicRecorder : MonoBehaviour
             OnPlay = false;
         }
         
+    }
+
+    public void OnResetBpmBtnPressed()
+    {
+        int newBPM = int.Parse(songBPMInput.text);
+
+        Debug.Log(newBPM);
     }
 
     public void OnSaveBtnPressed()
