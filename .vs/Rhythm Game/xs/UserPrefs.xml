@@ -1,14 +1,16 @@
 ﻿<Properties StartupConfiguration="{39619D8C-3F6C-F370-3E5A-57A3A31FD1F5}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SongMenu/LoopScrollMenu.cs">
     <Files>
       <File FileName="Assets/Scripts/EpicRecorder.cs" Line="1059" Column="28" />
       <File FileName="Assets/Scripts/Recorder.cs" />
-      <File FileName="Assets/Scripts/GameController.cs" Line="40" Column="1" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="1079" Column="23" />
       <File FileName="Assets/Scripts/SongData.cs" />
       <File FileName="Assets/Scripts/Note.cs" />
       <File FileName="Assets/Scripts/Effect.cs" />
       <File FileName="Assets/Scripts/Detecter.cs" />
       <File FileName="Assets/Scripts/LongNote.cs" />
+      <File FileName="Assets/Scripts/SongMenu/LoopScrollMenu.cs" Line="28" Column="34" />
+      <File FileName="Assets/Scripts/SongMenu/Item.cs" Line="14" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,7 +18,9 @@
           <Node name="Rhythm Game" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="EpicRecorder.cs" selected="True" />
+                <Node name="SongMenu" expanded="True">
+                  <Node name="LoopScrollMenu.cs" selected="True" />
+                </Node>
               </Node>
             </Node>
           </Node>
