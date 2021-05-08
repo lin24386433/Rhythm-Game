@@ -20,6 +20,9 @@ public class SongMenu : MonoBehaviour
     [SerializeField]
     private List<Button> buttons;
 
+    AudioSource audioSource;
+    AudioClip audioClip;
+
     [SerializeField]
     private Text bestScoreTxt;
 
@@ -33,13 +36,10 @@ public class SongMenu : MonoBehaviour
 
         InitMenu();
 
+        audioSource = GetComponent<AudioSource>();
 
+        StartCoroutine(LoadAudio());
 
-        for(int i = 0; i < buttons.Count; i++)
-        {
-            int copy = i;
-            buttons[i].onClick.AddListener(delegate () { OnBtnClicked(copy);  });
-        }
     }
 
     // Update is called once per frame
@@ -54,15 +54,21 @@ public class SongMenu : MonoBehaviour
 
         DirectoryInfo info = new DirectoryInfo(path);
 
-        FileInfo[] fileInfos = info.GetFiles("*.txt");
+        DirectoryInfo[] folders = info.GetDirectories();
 
-        foreach (FileInfo jsonFile in fileInfos)
+        foreach(DirectoryInfo folder in folders)
         {
-            string loadData = File.ReadAllText(jsonFile.FullName);
+            FileInfo[] fileInfos = folder.GetFiles("*.txt");
 
-            SongData data = JsonUtility.FromJson<SongData>(loadData);
-            songDatas.Add(data);
+            foreach (FileInfo jsonFile in fileInfos)
+            {
+                string loadData = File.ReadAllText(jsonFile.FullName);
+
+                SongData data = JsonUtility.FromJson<SongData>(loadData);
+                songDatas.Add(data);
+            }
         }
+        
     }
 
     void InitMenu()
@@ -73,11 +79,50 @@ public class SongMenu : MonoBehaviour
             obj.transform.SetParent(contentObj.transform);
 
             obj.GetComponent<SongListPanel>().songNameTxt.text = songDatas[i].songName;
+
+            // pass value v.s pass reference
+            int copy = i;
+            obj.GetComponent<Button>().onClick.AddListener(delegate () { OnBtnClicked(copy); });
             buttons.Add(obj.GetComponent<Button>());
         }
+
         bestScoreTxt.text = songDatas[0].highScore.ToString();
         bestComboTxt.text = songDatas[0].highCombo.ToString();
         buttons[selectedPanelIndex].transform.localScale = new Vector3(1.2f, 1.2f, 0);
+
+
+    }
+
+    private IEnumerator LoadAudio()
+    {
+        WWW request = GetAudioFromFile(selectedPanelIndex);
+        yield return request;
+
+        audioClip = request.GetAudioClip();
+        audioClip.name = "music";
+
+        PlayAudioFile();
+    }
+
+    private void PlayAudioFile()
+    {
+        audioSource.clip = audioClip;
+        audioSource.Play();
+        audioSource.loop = true;
+    }
+
+    private WWW GetAudioFromFile(int index)
+    {
+        string path = Path.Combine(Application.dataPath, "SongDatas");
+
+        DirectoryInfo info = new DirectoryInfo(path);
+
+        DirectoryInfo[] folders = info.GetDirectories();
+
+        path = Path.Combine(folders[index].FullName, "music.mp3");
+        
+        WWW request = new WWW(path);
+        return request;
     }
 
     public void OnBtnClicked(int index)
@@ -87,6 +132,8 @@ public class SongMenu : MonoBehaviour
         buttons[selectedPanelIndex].transform.localScale = new Vector3(1.2f, 1.2f, 0);
         bestScoreTxt.text = songDatas[selectedPanelIndex].highScore.ToString();
         bestComboTxt.text = songDatas[selectedPanelIndex].highCombo.ToString();
+
+        StartCoroutine(LoadAudio());
     }
 
 }
