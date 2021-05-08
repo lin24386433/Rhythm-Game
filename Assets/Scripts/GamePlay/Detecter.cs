@@ -130,7 +130,7 @@ public class Detecter : MonoBehaviour
             {
                 Destroy(collision.gameObject.transform.parent.gameObject);
 
-                if(collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().noteLength >= 0.5f)
+                if(collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().noteLength >= badTiming)
                 {
                     GameController.instance.combo = 0;
                     Instantiate(effects[3], new Vector2(this.transform.position.x, -4.5f), this.transform.rotation);

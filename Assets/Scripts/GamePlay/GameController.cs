@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     public SongData loadedData;
 
     // Basic Setup
-    #region BasicSetUPWithJson
+    #region BasicVariablesWithJson
     public string songName;
 
     public int songBPM;
@@ -36,7 +36,8 @@ public class GameController : MonoBehaviour
     #endregion
 
     // �Э��]�w
-    //public int[,] notes;
+    public int[,] notes;
+    /*
     public int[,] notes = new int[804, 4]
     {
         {0,0,0,0},
@@ -844,7 +845,7 @@ public class GameController : MonoBehaviour
 {0,0,0,0},
 {0,0,0,0}
     };
-
+    */
 
     /// <summary>
     /// �C����¦�ܼ�
@@ -917,15 +918,11 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        //SongLoadedFromJson();
+        SongLoadedFromJson();
 
-        //notes = StringToTwoDimensionalArray(loadedData.songNotesStrVer);
+        notes = StringToTwoDimensionalArray(loadedData.songNotesStrVer);
  
-        //songBpm = loadedData.songBPM;
-        songBpm = 540;
-
-        // ��ҳ]�w
-        instance = this;
+        songBpm = loadedData.songBPM;
 
         // ��l�ƭ��ֳ]�w
         MusicSetUP();
@@ -954,6 +951,7 @@ public class GameController : MonoBehaviour
     /// 3. �C��X��Beat�B�CBeat�X��
     /// 4. �p��í˼Ƶ��ݮɶ����񭵼�
     /// </summary>
+    #region FUNC:MusicSetUP, BasicSetUP
     void MusicSetUP()
     {
         //Load the AudioSource attached to the Conductor GameObject
@@ -978,12 +976,17 @@ public class GameController : MonoBehaviour
 
     void BasicSetUP()
     {
+        if(instance == null)
+            instance = this;
         fullComboNumber = calculateFullCombo();
     }
+
+    #endregion
 
     /// <summary>
     /// 1. ��s���ּ����ĴX��BBeat
     /// </summary>
+    #region FUNC:MusicUpdate, UIUpdate
     void MusicUpdate()
     {
         //determine how many seconds since the song started
@@ -994,10 +997,20 @@ public class GameController : MonoBehaviour
 
         beatNow = (int)songPositionInBeats;
     }
+    /// <summary>
+    /// 1. ��sUI
+    /// </summary>
+    void UIUpdate()
+    {
+        scoreTxt.text = gameScore.ToString();
+        comboTxt.text = combo.ToString();
+    }
+    #endregion
 
     /// <summary>
     /// 1. �N�}�C����ഫ���Э��ͦ��b�̤W��
     /// </summary>
+    #region FUNC:SpawnNotes
     void SpawnNotes()
     {
         for (int k = 0; k < totalBeats; k++)
@@ -1038,7 +1051,9 @@ public class GameController : MonoBehaviour
             }
         }
     }
+    #endregion
 
+    #region FUNC:calculateFullCombo
     int calculateFullCombo()
     {
         int x = 0;
@@ -1054,7 +1069,9 @@ public class GameController : MonoBehaviour
         }
         return x;
     }
+    #endregion
 
+    #region FUNC:TwoDimensionalArrayToString, StringToTwoDimensionalArray
     public string TwoDimensionalArrayToString(int[,] array)
     {
         string saveStr = "";
@@ -1118,37 +1135,19 @@ public class GameController : MonoBehaviour
         return array;
     }
 
-    void SongSaveToJson()
-    {
-        dataToSave = new SongData();
-        dataToSave.songName = "Gurenge";
-        dataToSave.songBPM = 540;
-        dataToSave.songNotesStrVer = TwoDimensionalArrayToString(notes);
-        dataToSave.songLength = musicLength;
-        dataToSave.songDifficulty = 5;
-        dataToSave.totalCombo = fullComboNumber;
-        dataToSave.totalScore = fullComboNumber * 500;
-        dataToSave.highCombo = 0;
-        dataToSave.highScore = 0;
-        dataToSave.playTimes = 0;
+    #endregion
 
-        string jsonInfo = JsonUtility.ToJson(dataToSave, true);
-
-        string path = Path.Combine(Application.dataPath, "data");
-        //path = Path.Combine(path, "Gurenge.txt");
-
-        File.WriteAllText(path, jsonInfo);
-
-
-        Debug.Log("寫入完成");
-        Debug.Log("dataPath: " + Application.dataPath);
-    }
+    #region FUNC: Load Frpm Json
 
     void SongLoadedFromJson()
     {
         string LoadData;
 
-        string path = Path.Combine(Application.dataPath, "data");
+        string path = Path.Combine(Application.dataPath, "SongDatas");
+
+        path = Path.Combine(path, "Gurenge");
+
+        path = Path.Combine(path, "Gurenge" + ".txt");
 
         LoadData = File.ReadAllText(path);
 
@@ -1157,25 +1156,20 @@ public class GameController : MonoBehaviour
         
     }
 
-    /// <summary>
-    /// 1. ��sUI
-    /// </summary>
-    void UIUpdate()
-    {
-        scoreTxt.text = gameScore.ToString();
-        comboTxt.text = combo.ToString();
-    }
+    #endregion
 
     /// <summary>
     /// 1. �˼�timeToPlayMusic����񭵼�
     /// </summary>
     /// <param name="timeToPlayMusic"></param>
     /// <returns></returns>
+    #region IEnumerator:WaitForStart
     IEnumerator WaitForStart(float timeToPlayMusic)
     {
         yield return new WaitForSeconds(timeToPlayMusic);
         // Start the music
         musicSource.Play();
     }
+    #endregion
 }
 

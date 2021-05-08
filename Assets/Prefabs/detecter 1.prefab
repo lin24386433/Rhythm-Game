@@ -125,12 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 454a95411b911f249a72d168302b6622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites: {fileID: 0}
   effects:
   - {fileID: 1581467516197914815, guid: dd1b920f9d2b21841aad6d7d05c50fb3, type: 3}
   - {fileID: 4240585344943367848, guid: 1ad4d3a9ca60cad42ba8e00a82a6cd96, type: 3}
   - {fileID: 723556615046334444, guid: 1ed1274ba84032944bd6193c7abe652b, type: 3}
-  light: {fileID: 5398146885686928769}
+  lightEffect: {fileID: 0}
   lightBG: {fileID: 0}
   canDestroy: 0
   keyCodes: 122
@@ -168,7 +167,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b715611146204cc449242cc0d0c726ff, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ea6c6afd6636c2944aec188a42b52b28, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

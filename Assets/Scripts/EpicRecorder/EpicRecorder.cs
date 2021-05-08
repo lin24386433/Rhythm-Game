@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class EpicRecorder : MonoBehaviour
 {
+    #region MusicVariables
     // Song beats per minute
     // This is determined by the song you're trying to sync up to
     public float songBpm;
@@ -29,6 +31,8 @@ public class EpicRecorder : MonoBehaviour
     // an AudioSource attached to this GameObject that will play the music.
     public AudioSource musicSource;
 
+    #endregion
+
     public int totalBeats;
 
     public float beatInScrollBar;
@@ -37,6 +41,10 @@ public class EpicRecorder : MonoBehaviour
 
     public float time;
 
+    public int[,] notes;
+
+    #region Note
+    /*
     public int[,] notes = new int[804, 4]
     {
         {0,0,0,0},
@@ -844,6 +852,8 @@ public class EpicRecorder : MonoBehaviour
 {0,0,0,0},
 {0,0,0,0}
     };
+    */
+    #endregion
 
     public bool OnPlay = false;
 
@@ -860,17 +870,25 @@ public class EpicRecorder : MonoBehaviour
 
     public InputField songBPMInput;
 
+    // Json
+    private SongData dataToSave;
+
+    private SongData loadedData;
+
 
     void Start()
     {
+        SongLoadedFromJson();
+
+        songBpm = loadedData.songBPM;
+        notes = StringToTwoDimensionalArray(loadedData.songNotesStrVer);
+
         //Load the AudioSource attached to the Conductor GameObject
         musicSource = GetComponent<AudioSource>();
 
         musicLength = musicSource.clip.length;
 
         totalBeats = (Mathf.RoundToInt((songBpm * musicLength) / 60));
-
-        //notes = new int[totalBeats, 4];
 
 
         //Calculate the number of seconds in each beat
@@ -881,7 +899,6 @@ public class EpicRecorder : MonoBehaviour
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
 
-        //musicSource.Play();
 
         musicSlider.minValue = 0;
         musicSlider.maxValue = totalBeats;
@@ -1044,11 +1061,154 @@ public class EpicRecorder : MonoBehaviour
     }
     #endregion
 
+    #region FUNC:TwoDimensionalArrayToString, StringToTwoDimensionalArray
+    public string TwoDimensionalArrayToString(int[,] array)
+    {
+        string saveStr = "";
+        for (int i = 0; i < totalBeats; i++)
+        {
+            saveStr += "{";
+            for (int j = 0; j <= 3; j++)
+            {
+                if (j == 3)
+                    saveStr += array[i, j].ToString();
+                else
+                    saveStr += array[i, j].ToString() + ",";
+            }
+            if (i == totalBeats - 1)
+                saveStr += "} \n";
+            else
+                saveStr += "}, \n";
+        }
+        return saveStr;
+    }
+
+    public int[,] StringToTwoDimensionalArray(string str)
+    {
+        int totalRows = 0;
+        foreach (char ch in str)
+        {
+            if (ch == '}')
+            {
+                totalRows++;
+            }
+        }
+
+        int[,] array = new int[totalRows, 4];
+        int rowIndex = 0;       // 0~totalBeats-1
+        int columnIndex = 0;    // 0~3
+
+        foreach (char ch in str)
+        {
+            if (ch == '0')
+            {
+                array[rowIndex, columnIndex] = 0;
+                columnIndex++;
+            }
+            else if (ch == '1')
+            {
+                array[rowIndex, columnIndex] = 1;
+                columnIndex++;
+            }
+            else if (ch == '2')
+            {
+                array[rowIndex, columnIndex] = 2;
+                columnIndex++;
+            }
+            else if (ch == '}')
+            {
+                rowIndex++;
+                columnIndex = 0;
+            }
+        }
+
+        return array;
+    }
+    #endregion
+
+    #region FUNC:Save & Load Json
+    void SongSaveToJson()
+    {
+        dataToSave = new SongData();
+        dataToSave.songName = "Gurenge";
+        dataToSave.songBPM = 540;
+        dataToSave.songNotesStrVer = TwoDimensionalArrayToString(notes);
+        dataToSave.songLength = musicLength;
+        dataToSave.songDifficulty = songDifficulty.hard;
+        dataToSave.audio = musicSource.clip;
+        dataToSave.totalCombo = calculateFullCombo();
+        dataToSave.totalScore = calculateFullCombo() * 500;
+        dataToSave.highCombo = 0;
+        dataToSave.highScore = 0;
+        dataToSave.playTimes = 0;
+
+        string jsonInfo = JsonUtility.ToJson(dataToSave, true);
+
+        string path = Path.Combine(Application.dataPath, "SongDatas");
+
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
+
+        path = Path.Combine(path, dataToSave.songName);
+
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
+
+        path = Path.Combine(path, dataToSave.songName + ".txt");
+
+        File.WriteAllText(path, jsonInfo);
+
+
+        Debug.Log("寫入完成");
+        Debug.Log("dataPath: " + path);
+    }
+
+    void SongLoadedFromJson()
+    {
+        string LoadData;
+
+        string path = Path.Combine(Application.dataPath, "SongDatas");
+
+        path = Path.Combine(path, "Gurenge");
+
+        path = Path.Combine(path, "Gurenge" + ".txt");
+
+        LoadData = File.ReadAllText(path);
+
+        //把字串轉換成Data物件
+        loadedData = JsonUtility.FromJson<SongData>(LoadData);
+
+    }
+    #endregion
+
+    #region FUNC:calculateFullCombo
+    int calculateFullCombo()
+    {
+        int x = 0;
+        for (int k = 0; k < totalBeats; k++)
+        {
+            for (int i = 0; i <= 3; i++)
+            {
+                if (notes[k, i] != 0)
+                {
+                    x++;
+                }
+            }
+        }
+        return x;
+    }
+    #endregion
+
+    #region FUNC: UI
     public void OnSliderValueChanged()
     {
         beatNow = (int)(musicSlider.value);
         bpmNowText.text = (musicSlider.value).ToString();
-        
+
     }
 
     public void OnNextBtnPressed()
@@ -1082,9 +1242,29 @@ public class EpicRecorder : MonoBehaviour
 
     public void OnResetBpmBtnPressed()
     {
+        if (songBPMInput.text == null) return;
         int newBPM = int.Parse(songBPMInput.text);
 
-        Debug.Log(newBPM);
+        songBpm = newBPM;
+
+        foreach(EpicBeat epicBeat in allEpicBeats)
+        {
+            Destroy(epicBeat.gameObject);
+            
+        }
+
+        allEpicBeats = new List<EpicBeat>();
+
+        totalBeats = (Mathf.RoundToInt((songBpm * musicLength) / 60));
+
+        //Calculate the number of seconds in each beat
+        secPerBeat = 60f / songBpm;
+
+        beatPerSec = 1 / secPerBeat;
+
+        notes = new int[totalBeats, 4];
+
+        SpawnAllEpicBeat();
     }
 
     public void OnSaveBtnPressed()
@@ -1106,7 +1286,8 @@ public class EpicRecorder : MonoBehaviour
                 saveStr += "}, \n";
         }
         Debug.Log(saveStr);
+        SongSaveToJson();
     }
 
-
+    #endregion
 }
