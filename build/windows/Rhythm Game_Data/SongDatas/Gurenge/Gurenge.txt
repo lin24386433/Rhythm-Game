@@ -9,6 +9,9 @@
     "backGroundImage": {
         "instanceID": 0
     },
+    "audio": {
+        "instanceID": 16688
+    },
     "highCombo": 0,
     "highScore": 0,
     "playTimes": 0

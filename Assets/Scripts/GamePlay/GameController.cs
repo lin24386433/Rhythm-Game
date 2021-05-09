@@ -909,27 +909,34 @@ public class GameController : MonoBehaviour
     public float dspSongTime;
 
     // an AudioSource attached to this GameObject that will play the music.
-    public AudioSource musicSource;
+    AudioSource audioSource;
+    AudioClip audioClip;
 
     // ���֪���
     public float musicLength;
 
     #endregion
 
-    private void Start()
+    public Text songNameTxt;
+
+    private void Awake()
     {
         SongLoadedFromJson();
 
         notes = StringToTwoDimensionalArray(loadedData.songNotesStrVer);
- 
+
         songBpm = loadedData.songBPM;
 
         // ��l�ƭ��ֳ]�w
         MusicSetUP();
 
         BasicSetUP();
+    }
 
-        //SongSaveToJson();
+    private void Start()
+    {
+
+
 
     }
 
@@ -955,9 +962,9 @@ public class GameController : MonoBehaviour
     void MusicSetUP()
     {
         //Load the AudioSource attached to the Conductor GameObject
-        musicSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
 
-        musicLength = musicSource.clip.length;
+        musicLength = audioSource.clip.length;
 
         totalBeats = (Mathf.RoundToInt((songBpm * musicLength) / 60));
 
@@ -979,6 +986,8 @@ public class GameController : MonoBehaviour
         if(instance == null)
             instance = this;
         fullComboNumber = calculateFullCombo();
+
+        songNameTxt.text = loadedData.songName;
     }
 
     #endregion
@@ -1145,7 +1154,11 @@ public class GameController : MonoBehaviour
 
         string path = Path.Combine(Application.dataPath, "SongDatas");
 
-        path = Path.Combine(path, "Gurenge");
+        DirectoryInfo info = new DirectoryInfo(path);
+
+        DirectoryInfo[] folders = info.GetDirectories();
+
+        path = folders[GameData.selectedPanelIndex].FullName;
 
         path = Path.Combine(path, "Gurenge" + ".txt");
 
@@ -1153,10 +1166,36 @@ public class GameController : MonoBehaviour
 
         //把字串轉換成Data物件
         loadedData = JsonUtility.FromJson<SongData>(LoadData);
-        
+
+        StartCoroutine(LoadAudio());
     }
 
     #endregion
+
+    private IEnumerator LoadAudio()
+    {
+        WWW request = GetAudioFromFile(GameData.selectedPanelIndex);
+        yield return request;
+
+        audioClip = request.GetAudioClip();
+        audioClip.name = "music";
+
+        audioSource.clip = audioClip;
+    }
+
+    private WWW GetAudioFromFile(int index)
+    {
+        string path = Path.Combine(Application.dataPath, "SongDatas");
+
+        DirectoryInfo info = new DirectoryInfo(path);
+
+        DirectoryInfo[] folders = info.GetDirectories();
+
+        path = Path.Combine(folders[index].FullName, "music.mp3");
+
+        WWW request = new WWW(path);
+        return request;
+    }
 
     /// <summary>
     /// 1. �˼�timeToPlayMusic����񭵼�
@@ -1168,7 +1207,7 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(timeToPlayMusic);
         // Start the music
-        musicSource.Play();
+        audioSource.Play();
     }
     #endregion
 }

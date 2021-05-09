@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.SceneManagement;
+
+public static class GameData
+{
+    public static int selectedPanelIndex = 0;
+
+}
 
 public class SongMenu : MonoBehaviour
 {
@@ -14,8 +21,6 @@ public class SongMenu : MonoBehaviour
 
     [SerializeField]
     private GameObject songListPanelPrefab;
-
-    private int selectedPanelIndex = 0;
 
     [SerializeField]
     private List<Button> buttons;
@@ -45,7 +50,10 @@ public class SongMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            SceneManager.LoadScene("GamePlayScene");
+        }
     }
 
     void LoadFromJsons()
@@ -88,14 +96,14 @@ public class SongMenu : MonoBehaviour
 
         bestScoreTxt.text = songDatas[0].highScore.ToString();
         bestComboTxt.text = songDatas[0].highCombo.ToString();
-        buttons[selectedPanelIndex].transform.localScale = new Vector3(1.2f, 1.2f, 0);
+        buttons[GameData.selectedPanelIndex].transform.localScale = new Vector3(1.2f, 1.2f, 0);
 
 
     }
 
     private IEnumerator LoadAudio()
     {
-        WWW request = GetAudioFromFile(selectedPanelIndex);
+        WWW request = GetAudioFromFile(GameData.selectedPanelIndex);
         yield return request;
 
         audioClip = request.GetAudioClip();
@@ -127,11 +135,11 @@ public class SongMenu : MonoBehaviour
 
     public void OnBtnClicked(int index)
     {
-        buttons[selectedPanelIndex].transform.localScale = new Vector3(1.0f, 1.0f, 0);
-        selectedPanelIndex = index;
-        buttons[selectedPanelIndex].transform.localScale = new Vector3(1.2f, 1.2f, 0);
-        bestScoreTxt.text = songDatas[selectedPanelIndex].highScore.ToString();
-        bestComboTxt.text = songDatas[selectedPanelIndex].highCombo.ToString();
+        buttons[GameData.selectedPanelIndex].transform.localScale = new Vector3(1.0f, 1.0f, 0);
+        GameData.selectedPanelIndex = index;
+        buttons[GameData.selectedPanelIndex].transform.localScale = new Vector3(1.2f, 1.2f, 0);
+        bestScoreTxt.text = songDatas[GameData.selectedPanelIndex].highScore.ToString();
+        bestComboTxt.text = songDatas[GameData.selectedPanelIndex].highCombo.ToString();
 
         StartCoroutine(LoadAudio());
     }

@@ -2697,8 +2697,8 @@ MonoBehaviour:
   songPositionInBeats: 0
   beatNow: 0
   dspSongTime: 0
-  musicSource: {fileID: 1902146807}
   musicLength: 0
+  songNameTxt: {fileID: 1616620544}
 --- !u!1 &1925936699
 GameObject:
   m_ObjectHideFlags: 0

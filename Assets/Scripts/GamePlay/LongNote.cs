@@ -28,12 +28,12 @@ public class LongNote : MonoBehaviour
         {
             OnFallingFunc();
         }
-        else if (OnHolding && noteLength >= -0.5f)
+        else if (OnHolding && noteLength >= -0.9f)
         {
             OnHoldingFunc();
         }
 
-        if(noteLength <= -0.5f)
+        if(noteLength <= -0.9f)
         {
 
             Destroy(this.gameObject);
