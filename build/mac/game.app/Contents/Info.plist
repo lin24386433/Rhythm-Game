@@ -7,7 +7,7 @@
     <key>CFBundleExecutable</key>
     <string>Rhythm Game</string>
     <key>CFBundleGetInfoString</key>
-    <string>Unity Player version 2020.3.0f1 (c7b5465681fb). (c) 2021 Unity Technologies ApS. All rights reserved.</string>
+    <string>Unity Player version 2020.3.7f1 (dd97f2c94397). (c) 2021 Unity Technologies ApS. All rights reserved.</string>
     <key>CFBundleIconFile</key>
     <string>PlayerIcon.icns</string>
     <key>CFBundleIdentifier</key>
@@ -40,6 +40,6 @@
     <key>NSPrincipalClass</key>
     <string>PlayerApplication</string>
     <key>UnityBuildNumber</key>
-    <string>c7b5465681fb</string>
+    <string>dd97f2c94397</string>
   </dict>
 </plist>

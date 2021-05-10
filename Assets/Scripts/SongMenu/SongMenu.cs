@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using UnityEngine.SceneManagement;
-
 using UnityEngine.Networking;
 
 public class SongMenu : MonoBehaviour
@@ -110,9 +109,25 @@ public class SongMenu : MonoBehaviour
 
         path = Path.Combine(folders[GameData.selectedPanelIndex].FullName, "music.mp3");
 
-        Debug.Log(path);
+#if UNITY_STANDALONE_OSX
 
-        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(path, AudioType.MPEG))
+        string url = "file://" + path;
+
+#endif
+
+#if UNITY_STANDALONE_LINUX
+
+        string url = "file://" + path;
+
+#endif
+
+#if UNITY_STANDALONE_WIN
+
+        string url = "file://" + path;
+
+#endif
+
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.MPEG))
         {
             yield return www.SendWebRequest();
 
@@ -140,21 +155,6 @@ public class SongMenu : MonoBehaviour
         audioSource.loop = true;
     }
 
-    
-
-    private UnityWebRequest GetAudioFromFile(int index)
-    {
-        string path = Path.Combine(Application.dataPath, "SongDatas");
-
-        DirectoryInfo info = new DirectoryInfo(path);
-
-        DirectoryInfo[] folders = info.GetDirectories();
-
-        path = Path.Combine(folders[index].FullName, "music.mp3");
-        
-        UnityWebRequest request = new UnityWebRequest(path);
-        return request;
-    }
 
     public void OnBtnClicked(int index)
     {

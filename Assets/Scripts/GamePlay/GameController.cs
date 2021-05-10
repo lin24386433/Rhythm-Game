@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.Networking;
 
 public class GameController : MonoBehaviour
 {
@@ -1188,27 +1189,53 @@ public class GameController : MonoBehaviour
 
     private IEnumerator LoadAudio()
     {
-        WWW request = GetAudioFromFile(GameData.selectedPanelIndex);
-        yield return request;
+        AudioClip myClip = null;
 
-        audioClip = request.GetAudioClip();
-        audioClip.name = "music";
-
-        audioSource.clip = audioClip;
-    }
-
-    private WWW GetAudioFromFile(int index)
-    {
         string path = Path.Combine(Application.dataPath, "SongDatas");
 
         DirectoryInfo info = new DirectoryInfo(path);
 
         DirectoryInfo[] folders = info.GetDirectories();
 
-        path = Path.Combine(folders[index].FullName, "music.mp3");
+        path = Path.Combine(folders[GameData.selectedPanelIndex].FullName, "music.mp3");
 
-        WWW request = new WWW(path);
-        return request;
+#if UNITY_STANDALONE_OSX
+
+        string url = "file://" + path;
+
+#endif
+
+#if UNITY_STANDALONE_LINUX
+
+        string url = "file://" + path;
+
+#endif
+
+#if UNITY_STANDALONE_WIN
+
+        string url = "file://" + path;
+
+#endif
+
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.MPEG))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.ConnectionError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                myClip = DownloadHandlerAudioClip.GetContent(www);
+            }
+        }
+
+        audioClip = myClip;
+
+        audioClip.name = "music";
+
+        audioSource.clip = audioClip;
     }
 
     /// <summary>
