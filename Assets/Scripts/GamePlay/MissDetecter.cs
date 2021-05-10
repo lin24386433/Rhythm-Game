@@ -11,6 +11,7 @@ public class MissDetecter : MonoBehaviour
         Instantiate(missObj, new Vector2(collision.transform.position.x, -4.5f), collision.transform.rotation);
         Destroy(collision.gameObject);
         GameController.instance.combo = 0;
+        GameData.missCount++;
     }
 
 }

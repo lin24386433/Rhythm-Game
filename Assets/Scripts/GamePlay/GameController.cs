@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -953,6 +954,11 @@ public class GameController : MonoBehaviour
         UIUpdate();
 
         ScoreUpdate();
+
+        if(beatNow == totalBeats)
+        {
+            SceneManager.LoadScene("ConcludeScene");
+        }
 
     }
 
