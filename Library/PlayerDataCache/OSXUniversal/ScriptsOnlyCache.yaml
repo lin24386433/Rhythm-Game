@@ -7,11 +7,13 @@ ScriptsOnlyBuild:
     - LongNote
     - MissDetecter
     - Note
+    - SongListPanel
+    - SongMenu
+    - StartGame
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
-    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.IK.Runtime.dll:
     - UnityEditor.U2D.IK.IKEditorManagerHelper
     Unity.2D.Tilemap.Editor.dll:
@@ -36,11 +38,15 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.Outline
+    - UnityEngine.UI.ScrollRect
     - UnityEngine.UI.Text
+    - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
     Assets/Scenes/GamePlayScene.unity:
     - Class: 1
@@ -55,8 +61,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 49
-      Script: {instanceID: 0}
     - Class: 50
       Script: {instanceID: 0}
     - Class: 61
@@ -70,39 +74,33 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1538}
+      Script: {instanceID: 1566}
     - Class: 114
-      Script: {instanceID: 1808}
+      Script: {instanceID: 1912}
     - Class: 114
-      Script: {instanceID: 1882}
+      Script: {instanceID: 2160}
     - Class: 114
-      Script: {instanceID: 2120}
+      Script: {instanceID: 2168}
     - Class: 114
-      Script: {instanceID: 2128}
+      Script: {instanceID: 2420}
     - Class: 114
-      Script: {instanceID: 2136}
+      Script: {instanceID: 2534}
     - Class: 114
-      Script: {instanceID: 2500}
+      Script: {instanceID: 2586}
     - Class: 114
-      Script: {instanceID: 2552}
+      Script: {instanceID: 2682}
     - Class: 114
-      Script: {instanceID: 2648}
+      Script: {instanceID: 2852}
     - Class: 114
-      Script: {instanceID: 2818}
+      Script: {instanceID: 3064}
     - Class: 114
-      Script: {instanceID: 3028}
+      Script: {instanceID: 3202}
     - Class: 114
-      Script: {instanceID: 3166}
+      Script: {instanceID: 3432}
     - Class: 114
-      Script: {instanceID: 3396}
+      Script: {instanceID: 3436}
     - Class: 114
-      Script: {instanceID: 3400}
-    - Class: 114
-      Script: {instanceID: 3804}
-    - Class: 114
-      Script: {instanceID: 4270}
-    - Class: 114
-      Script: {instanceID: 4600}
+      Script: {instanceID: 3842}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -125,6 +123,77 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
+    Assets/Scenes/SongMenu.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1566}
+    - Class: 114
+      Script: {instanceID: 1838}
+    - Class: 114
+      Script: {instanceID: 2150}
+    - Class: 114
+      Script: {instanceID: 2154}
+    - Class: 114
+      Script: {instanceID: 2160}
+    - Class: 114
+      Script: {instanceID: 2534}
+    - Class: 114
+      Script: {instanceID: 2682}
+    - Class: 114
+      Script: {instanceID: 2852}
+    - Class: 114
+      Script: {instanceID: 3064}
+    - Class: 114
+      Script: {instanceID: 3166}
+    - Class: 114
+      Script: {instanceID: 3362}
+    - Class: 114
+      Script: {instanceID: 3506}
+    - Class: 114
+      Script: {instanceID: 4210}
+    - Class: 114
+      Script: {instanceID: 4308}
+    - Class: 114
+      Script: {instanceID: 4640}
+    - Class: 114
+      Script: {instanceID: 4906}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
   scriptHashData:
   - hash:
       serializedVersion: 2
@@ -138,6 +207,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Image
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Item
   - hash:
       serializedVersion: 2
       Hash: 77aaaaa51f7a8d8ff333a879741e47d2
@@ -236,6 +311,12 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
+      Hash: 0fb484aaaff041d7d758026513253b48
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SongListPanel
+  - hash:
+      serializedVersion: 2
       Hash: 699619b86d9359741a4f58540298c80b
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -270,6 +351,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.IK.Runtime.dll
     namespaceName: UnityEngine.U2D.IK
     className: IKManager2D
+  - hash:
+      serializedVersion: 2
+      Hash: 7805dbebd103341782f3d6071ec8690f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StartGame
   - hash:
       serializedVersion: 2
       Hash: 5f170942ee57c7a568f5bcfc7521adea
@@ -368,6 +455,12 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
+      Hash: 451996e84b289a1df0b210b437d96a3b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LoopScrollMenu
+  - hash:
+      serializedVersion: 2
       Hash: 748dd2a2a28da4e618912da5ac45684b
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -434,7 +527,7 @@ ScriptsOnlyBuild:
     className: ContentSizeFitter
   - hash:
       serializedVersion: 2
-      Hash: 4045322cc71b6980b0042c4a1cd9a9fa
+      Hash: c7a0e9866ead5c5d434bdfd5b813ccdb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameController
@@ -518,7 +611,13 @@ ScriptsOnlyBuild:
     className: EventTrigger
   - hash:
       serializedVersion: 2
-      Hash: d9ae926edbe1199ff86bc8cc2d5567d9
+      Hash: 7dfc11c8e69573fb2f96f6894cf9e3bc
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EpicDetecter
+  - hash:
+      serializedVersion: 2
+      Hash: 5d786791adffa71613f4ba78adbf8256
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Detecter
@@ -626,6 +725,12 @@ ScriptsOnlyBuild:
     className: SpriteSkinEntity
   - hash:
       serializedVersion: 2
+      Hash: 12a69d833ac4229410a8dd1af16aaed9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EpicBeat
+  - hash:
+      serializedVersion: 2
       Hash: 28cfb4bd305dd11c6326cc3ee7c14138
     assemblyName: Unity.2D.Animation.Runtime.dll
     namespaceName: UnityEngine.Experimental.U2D.Animation
@@ -662,6 +767,12 @@ ScriptsOnlyBuild:
     className: Recorder
   - hash:
       serializedVersion: 2
+      Hash: d564e59f6373fbbc4d12565b8b76450b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SongMenu
+  - hash:
+      serializedVersion: 2
       Hash: 8220b46879dc5e37db1b940c938f5744
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -672,6 +783,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ActivationPlayableAsset
+  - hash:
+      serializedVersion: 2
+      Hash: a6b9644713004ba0b30cf2c8389aa02a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EpicRecorder
   - hash:
       serializedVersion: 2
       Hash: 7ab0e790220bdca831fdd886b339039d
@@ -692,5 +809,6 @@ ScriptsOnlyBuild:
     className: FabrikSolver2D
   platform: 2
   scenePathNames:
+  - Assets/Scenes/SongMenu.unity
   - Assets/Scenes/GamePlayScene.unity
   playerPath: /Users/lin/Desktop/Rhythm Game/build/mac/game.app

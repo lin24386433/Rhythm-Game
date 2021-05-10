@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using System.IO;
 using UnityEngine.SceneManagement;
 
+using UnityEngine.Networking;
+
 public class SongMenu : MonoBehaviour
 {
     [SerializeField]
@@ -38,6 +40,7 @@ public class SongMenu : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         StartCoroutine(LoadAudio());
+
 
     }
 
@@ -97,10 +100,34 @@ public class SongMenu : MonoBehaviour
 
     private IEnumerator LoadAudio()
     {
-        WWW request = GetAudioFromFile(GameData.selectedPanelIndex);
-        yield return request;
+        AudioClip myClip = null;
 
-        audioClip = request.GetAudioClip();
+        string path = Path.Combine(Application.dataPath, "SongDatas");
+
+        DirectoryInfo info = new DirectoryInfo(path);
+
+        DirectoryInfo[] folders = info.GetDirectories();
+
+        path = Path.Combine(folders[GameData.selectedPanelIndex].FullName, "music.mp3");
+
+        Debug.Log(path);
+
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(path, AudioType.MPEG))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.ConnectionError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                myClip = DownloadHandlerAudioClip.GetContent(www);
+            }
+        }
+
+        audioClip = myClip;
+
         audioClip.name = "music";
 
         PlayAudioFile();
@@ -113,7 +140,9 @@ public class SongMenu : MonoBehaviour
         audioSource.loop = true;
     }
 
-    private WWW GetAudioFromFile(int index)
+    
+
+    private UnityWebRequest GetAudioFromFile(int index)
     {
         string path = Path.Combine(Application.dataPath, "SongDatas");
 
@@ -123,7 +152,7 @@ public class SongMenu : MonoBehaviour
 
         path = Path.Combine(folders[index].FullName, "music.mp3");
         
-        WWW request = new WWW(path);
+        UnityWebRequest request = new UnityWebRequest(path);
         return request;
     }
 
