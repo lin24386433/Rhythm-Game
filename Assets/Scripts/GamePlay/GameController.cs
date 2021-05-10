@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
 
     // Basic Setup
     #region BasicVariablesWithJson
+    [Header("Basic Song Data")]
     public string songName;
 
     public int songBPM;
@@ -851,7 +852,7 @@ public class GameController : MonoBehaviour
     /// �C����¦�ܼ�
     /// </summary>
     #region GameBasicVariables
-
+    [Header("Game Basic Data")]
     // GameController ���
     public static GameController instance;
 
@@ -879,7 +880,7 @@ public class GameController : MonoBehaviour
     /// ���֬����ܼ�
     /// </summary>
     #region MusicVariables
-
+    [Header("Music Data")]
     // ���ֶ}�l�e���ݮɶ�
     public float timeBeforeStart;
 
@@ -931,12 +932,11 @@ public class GameController : MonoBehaviour
         MusicSetUP();
 
         BasicSetUP();
+
     }
 
     private void Start()
     {
-
-
 
     }
 
@@ -950,6 +950,9 @@ public class GameController : MonoBehaviour
 
         // ��sUI
         UIUpdate();
+
+        ScoreUpdate();
+
     }
 
     /// <summary>
@@ -1006,6 +1009,17 @@ public class GameController : MonoBehaviour
 
         beatNow = (int)songPositionInBeats;
     }
+
+    void ScoreUpdate() 
+    {
+        GameData.score = gameScore;
+        if(combo > GameData.maxCombo)
+        {
+            GameData.maxCombo = combo;
+        }
+    }
+
+
     /// <summary>
     /// 1. ��sUI
     /// </summary>

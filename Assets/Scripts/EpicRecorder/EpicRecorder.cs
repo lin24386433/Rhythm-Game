@@ -1264,6 +1264,9 @@ public class EpicRecorder : MonoBehaviour
 
         notes = new int[totalBeats, 4];
 
+        musicSlider.minValue = 0;
+        musicSlider.maxValue = totalBeats;
+
         SpawnAllEpicBeat();
     }
 

@@ -1206,11 +1206,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: badTiming
-      value: 0.9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: goodTiming
-      value: 0.7
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: lightEffect
@@ -1218,7 +1218,7 @@ PrefabInstance:
       objectReference: {fileID: 1779014719}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: perfectTiming
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: effects.Array.size
@@ -1299,11 +1299,11 @@ PrefabInstance:
       objectReference: {fileID: 1309625909}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: badTiming
-      value: 0.9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: goodTiming
-      value: 0.7
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: lightEffect
@@ -1311,7 +1311,7 @@ PrefabInstance:
       objectReference: {fileID: 784046301}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: perfectTiming
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: effects.Array.size
@@ -1327,6 +1327,50 @@ PrefabInstance:
       objectReference: {fileID: 6404688957362817737, guid: fbea62a8a1c54c148a697e70adcae7a7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
+--- !u!1 &1036568288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1036568290}
+  - component: {fileID: 1036568289}
+  m_Layer: 0
+  m_Name: StartGame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1036568289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036568288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b52e99a4c9186234d8961dd9d5b8e1d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: {fileID: 1902146806}
+--- !u!4 &1036568290
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036568288}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.22705618, y: 6.013467, z: -0.17774245}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1039064693
 GameObject:
   m_ObjectHideFlags: 0
@@ -1819,11 +1863,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: badTiming
-      value: 0.9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: goodTiming
-      value: 0.7
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: lightEffect
@@ -1831,7 +1875,7 @@ PrefabInstance:
       objectReference: {fileID: 1437612297}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: perfectTiming
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: effects.Array.size
@@ -1951,11 +1995,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: badTiming
-      value: 0.9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: goodTiming
-      value: 0.7
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: lightEffect
@@ -1963,7 +2007,7 @@ PrefabInstance:
       objectReference: {fileID: 661511696}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: perfectTiming
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 677948520655423060, guid: c44ea637fd441f24aa1f0705dfe81123, type: 3}
       propertyPath: effects.Array.size
@@ -2544,7 +2588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1902146807
 AudioSource:
   m_ObjectHideFlags: 0

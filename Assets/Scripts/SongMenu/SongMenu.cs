@@ -5,12 +5,6 @@ using UnityEngine.UI;
 using System.IO;
 using UnityEngine.SceneManagement;
 
-public static class GameData
-{
-    public static int selectedPanelIndex = 0;
-
-}
-
 public class SongMenu : MonoBehaviour
 {
     [SerializeField]

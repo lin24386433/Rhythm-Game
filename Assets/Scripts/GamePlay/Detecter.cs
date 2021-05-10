@@ -65,16 +65,19 @@ public class Detecter : MonoBehaviour
                 if (timing <= perfectTiming)
                 {
                     GameController.instance.gameScore += 500;
+                    GameData.perfectCount++;
                     Instantiate(effects[0], this.transform.position, this.transform.rotation);
                 }
                 else if (timing <= goodTiming)
                 {
                     GameController.instance.gameScore += 300;
+                    GameData.goodCount++;
                     Instantiate(effects[1], this.transform.position, this.transform.rotation);
                 }
                 else if (timing <= badTiming)
                 {
                     GameController.instance.gameScore += 100;
+                    GameData.badCount++;
                     Instantiate(effects[2], this.transform.position, this.transform.rotation);
                 }
 
@@ -98,17 +101,20 @@ public class Detecter : MonoBehaviour
                 if (timing <= perfectTiming)
                 {
                     GameController.instance.gameScore += 500;
+                    GameData.perfectCount++;
                     Instantiate(effects[0], this.transform.position, this.transform.rotation);
                     
                 }
                 else if (timing <= goodTiming)
                 {
                     GameController.instance.gameScore += 300;
+                    GameData.goodCount++;
                     Instantiate(effects[1], this.transform.position, this.transform.rotation);
                 }
                 else if (timing <= badTiming)
                 {
                     GameController.instance.gameScore += 100;
+                    GameData.badCount++;
                     Instantiate(effects[2], this.transform.position, this.transform.rotation);
                 }
 
@@ -133,6 +139,7 @@ public class Detecter : MonoBehaviour
                 if(collision.gameObject.transform.parent.gameObject.GetComponent<LongNote>().noteLength >= badTiming)
                 {
                     GameController.instance.combo = 0;
+                    GameData.missCount++;
                     Instantiate(effects[3], new Vector2(this.transform.position.x, -4.5f), this.transform.rotation);
                 }
                 
@@ -145,16 +152,19 @@ public class Detecter : MonoBehaviour
                 if (timing <= perfectTiming)
                 {
                     GameController.instance.gameScore += 500;
+                    GameData.perfectCount++;
                     Instantiate(effects[0], this.transform.position, this.transform.rotation);
                 }
                 else if (timing <= goodTiming)
                 {
                     GameController.instance.gameScore += 300;
+                    GameData.goodCount++;
                     Instantiate(effects[1], this.transform.position, this.transform.rotation);
                 }
                 else if (timing <= badTiming)
                 {
                     GameController.instance.gameScore += 100;
+                    GameData.badCount++;
                     Instantiate(effects[2], this.transform.position, this.transform.rotation);
                 }
 

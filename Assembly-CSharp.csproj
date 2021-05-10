@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\GamePlay\Note.cs" />
     <Compile Include="Assets\Scripts\SongMenu\SongListPanel.cs" />
     <Compile Include="Assets\Scripts\GamePlay\LongNote.cs" />
+    <Compile Include="Assets\Scripts\GamePlay\StartGame.cs" />
     <Compile Include="Assets\Scripts\GamePlay\Effect.cs" />
     <Compile Include="Assets\Scripts\SongMenu\LoopScrollMenu.cs" />
     <Compile Include="Assets\Scripts\GamePlay\MissDetecter.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\Scripts\EpicRecorder\Recorder.cs" />
     <Compile Include="Assets\Scripts\SongMenu\SongMenu.cs" />
     <Compile Include="Assets\Scripts\EpicRecorder\EpicRecorder.cs" />
+    <Compile Include="Assets\Scripts\GameData.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
