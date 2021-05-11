@@ -713,7 +713,7 @@ MonoBehaviour:
   badTxt: {fileID: 109159690}
   missTxt: {fileID: 1318730212}
   comboTxt: {fileID: 1612167749}
-  maxCpmboTxt: {fileID: 745976800}
+  bestComboTxt: {fileID: 745976800}
   scoreTxt: {fileID: 1545575780}
   bestScoreTxt: {fileID: 1573752032}
 --- !u!4 &1397676237

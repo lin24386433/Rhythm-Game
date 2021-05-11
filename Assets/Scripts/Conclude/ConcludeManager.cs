@@ -21,13 +21,18 @@ public class ConcludeManager : MonoBehaviour
     private Text comboTxt;
 
     [SerializeField]
-    private Text maxCpmboTxt;
+    private Text bestComboTxt;
 
     [SerializeField]
     private Text scoreTxt;
 
     [SerializeField]
     private Text bestScoreTxt;
+
+    private float accurate;
+
+    [SerializeField]
+    Sprite[] imgs;
 
     private void Awake()
     {
@@ -38,20 +43,33 @@ public class ConcludeManager : MonoBehaviour
 
         scoreTxt.text = GameData.score.ToString();
 
-        comboTxt.text = "Combo:" + GameData.maxCombo.ToString() + "/284";
+        comboTxt.text = "Combo:" + GameData.maxCombo.ToString() + "/" + GameData.totalCombo;
+        bestComboTxt.text = "Best:" + GameData.highCombo.ToString();
 
+        bestScoreTxt.text = "Best:" + GameData.highScore.ToString();
 
-    }
+        Image img = GetComponent<Image>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+        accurate = (float)(GameData.score / GameData.totalScore) * 100;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(accurate >= 96)
+        {
+            img.sprite = imgs[0];   // S
+        }
+        else if (accurate >= 90)
+        {
+            img.sprite = imgs[1];   // A
+        }
+        else if (accurate >= 80)
+        {
+            img.sprite = imgs[2];   // B
+        }else if (accurate >= 70)
+        {
+            img.sprite = imgs[3];   // C
+        }else
+        {
+            img.sprite = imgs[4];   // F
+        }
+
     }
 }

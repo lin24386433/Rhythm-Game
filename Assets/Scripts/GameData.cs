@@ -11,6 +11,13 @@ public static class GameData
     public static int badCount = 0;
     public static int missCount = 0;
 
+    public static int totalCombo;
+
     public static int score = 0;
+    public static int totalScore = 0;
+
     public static int maxCombo = 0;
+
+    public static int highCombo = 0;
+    public static int highScore = 0;
 }

@@ -12,900 +12,58 @@ public class GameController : MonoBehaviour
 
     public SongData loadedData;
 
-    // Basic Setup
-    #region BasicVariablesWithJson
-    [Header("Basic Song Data")]
-    public string songName;
-
-    public int songBPM;
-
-    public float songLength;
-
-    public int[,] songNotes;
-
-    public int songDifficulty;
-
-    public int totalCombo;
-
-    public int totalScore;
-
-    // Player data
-    public int highCombo;
-
-    public int highScore;
-
-    public int playTimes;
-
-    #endregion
-
-    // �Э��]�w
+    // Game Notes
     public int[,] notes;
-    /*
-    public int[,] notes = new int[804, 4]
-    {
-        {0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,2,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,2,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,2,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,2,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,1},
-{0,1,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,2,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,2,0},
-{0,0,0,0},
-{0,0,0,0},
-{2,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,2},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{2,0,0,0},
-{0,0,0,0},
-{0,0,0,2},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,2},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,2},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,2,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,2,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,2},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,2},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,2,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,2,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,2,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,2,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,2},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,2},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{2,0,0,0},
-{0,0,0,0},
-{2,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{1,1,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,1,0},
-{1,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{1,0,1,0},
-{0,0,0,0},
-{1,0,1,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,1,0},
-{0,0,1,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,2},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{1,0,0,0},
-{0,0,0,2},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{2,1,1,2},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{2,0,0,2},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,2,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,2,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,2,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,2,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,1,0},
-{0,0,0,0},
-{0,0,1,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,1,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,1,0},
-{0,0,0,0},
-{0,0,0,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,1,0,0},
-{0,0,2,0},
-{1,0,0,0},
-{0,0,0,0},
-{0,0,0,1},
-{0,0,0,0},
-{0,1,2,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0},
-{0,0,0,0}
-    };
-    */
 
-    /// <summary>
-    /// �C����¦�ܼ�
-    /// </summary>
     #region GameBasicVariables
     [Header("Game Basic Data")]
-    // GameController ���
+    // GameController instance
     public static GameController instance;
 
-    // ����Prefab
+    // Note Prefab
     public GameObject notePrefab;
 
+    // Long Note Prefab
     public GameObject longNotePrefab;
 
-    // 4�ӧP�w�I
+    // Detecters
     public GameObject[] detectPoints;
 
-    // �C�����Ƥ�combo��
+    // Game Score & Combo
     public int gameScore = 0;
     public int combo = 0;
 
-    public int fullComboNumber;
-
-    // �C��UI
+    // Game UI
     public Text scoreTxt;
     public Text comboTxt;
 
     #endregion
 
-    /// <summary>
-    /// ���֬����ܼ�
-    /// </summary>
+
     #region MusicVariables
     [Header("Music Data")]
-    // ���ֶ}�l�e���ݮɶ�
+    // Wait Time before note falling down
     public float timeBeforeStart;
 
-    // ����BPM
+    // Song BPM
     public float songBpm;
 
-    // �`Beat��
+    // Total Beats in notes
     public int totalBeats;
 
-    // �@��X��Beat
+    // how many beats in one second
     public float secPerBeat;
 
-    // �@��Beat�X��
+    // how many second in a beat
     public float beatPerSec;
 
     // Current song position, in seconds
-    // 
     public float songPosition;
 
-    // Current song position, in beats
-    // ���ּ����ĴX��BPM
+    // Current song position, in beats, float ver
     public float songPositionInBeats;
 
+    // Current song position, in beats, int ver
     public int beatNow;
 
     // How many seconds have passed since the song started
@@ -915,7 +73,7 @@ public class GameController : MonoBehaviour
     AudioSource audioSource;
     AudioClip audioClip;
 
-    // ���֪���
+    // music's length
     public float musicLength;
 
     #endregion
@@ -926,11 +84,20 @@ public class GameController : MonoBehaviour
     {
         SongLoadedFromJson();
 
+        StartCoroutine(LoadAudio());
+
         notes = StringToTwoDimensionalArray(loadedData.songNotesStrVer);
 
         songBpm = loadedData.songBPM;
 
-        // ��l�ƭ��ֳ]�w
+        GameData.highCombo = loadedData.highCombo;
+
+        GameData.highScore = loadedData.highScore;
+
+        GameData.totalCombo = loadedData.totalCombo;
+
+        GameData.totalScore = loadedData.totalScore;
+
         MusicSetUP();
 
         BasicSetUP();
@@ -944,46 +111,32 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        // ���ְѼƧ�s
         MusicUpdate();
 
-        // �ͦ��Э�
         SpawnNotes();
 
-        // ��sUI
         UIUpdate();
 
         ScoreUpdate();
 
-        if(beatNow == totalBeats)
-        {
-            SceneManager.LoadScene("ConcludeScene");
-        }
-
     }
 
-    /// <summary>
-    /// 1. ���oAudioSource
-    /// 2. �`�@�X��Beats
-    /// 3. �C��X��Beat�B�CBeat�X��
-    /// 4. �p��í˼Ƶ��ݮɶ����񭵼�
-    /// </summary>
     #region FUNC:MusicSetUP, BasicSetUP
     void MusicSetUP()
     {
-        //Load the AudioSource attached to the Conductor GameObject
+        // Load the AudioSource attached to the Conductor GameObject
         audioSource = GetComponent<AudioSource>();
 
         musicLength = audioSource.clip.length;
 
         totalBeats = (Mathf.RoundToInt((songBpm * musicLength) / 60));
 
-        //Calculate the number of seconds in each beat
+        // Calculate the number of seconds in each beat
         secPerBeat = 60f / songBpm;
 
         beatPerSec = songBpm / 60f;
 
-        //Record the time when the music starts
+        // Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
 
         timeBeforeStart = (((10 / secPerBeat) + 1) * secPerBeat) / beatPerSec;
@@ -995,23 +148,19 @@ public class GameController : MonoBehaviour
     {
         if(instance == null)
             instance = this;
-        fullComboNumber = calculateFullCombo();
 
         songNameTxt.text = loadedData.songName;
     }
 
     #endregion
 
-    /// <summary>
-    /// 1. ��s���ּ����ĴX��BBeat
-    /// </summary>
     #region FUNC:MusicUpdate, UIUpdate
     void MusicUpdate()
     {
-        //determine how many seconds since the song started
+        // determine how many seconds since the song started
         songPosition = (float)(AudioSettings.dspTime - dspSongTime);
 
-        //determine how many beats since the song started
+        // determine how many beats since the song started
         songPositionInBeats = songPosition / secPerBeat;
 
         beatNow = (int)songPositionInBeats;
@@ -1020,16 +169,19 @@ public class GameController : MonoBehaviour
     void ScoreUpdate() 
     {
         GameData.score = gameScore;
+
         if(combo > GameData.maxCombo)
         {
             GameData.maxCombo = combo;
         }
+
+        if (beatNow == totalBeats)
+        {
+            StartCoroutine(WaitForEnd(3f));
+        }
+
     }
 
-
-    /// <summary>
-    /// 1. ��sUI
-    /// </summary>
     void UIUpdate()
     {
         scoreTxt.text = gameScore.ToString();
@@ -1037,9 +189,6 @@ public class GameController : MonoBehaviour
     }
     #endregion
 
-    /// <summary>
-    /// 1. �N�}�C����ഫ���Э��ͦ��b�̤W��
-    /// </summary>
     #region FUNC:SpawnNotes
     void SpawnNotes()
     {
@@ -1052,12 +201,11 @@ public class GameController : MonoBehaviour
                     if (notes[k, i] == 1)
                     {
                         notes[k, i] = 0;
-                        // ((10 / secPerBeat) + 1) * secPerBeat�O�C���e���~��secPerBeat���̤p���Ʀ�m
+                        // ((10 / secPerBeat) + 1) * secPerBeat to determine where to spawn ouside bounds
                         Instantiate(notePrefab, detectPoints[i].transform.position + new Vector3(0, ((10 / secPerBeat) + 1) * secPerBeat, 0), detectPoints[i].transform.rotation);
                     }
                     if (notes[k, i] == 2)
                     {
-                        
                         int howManyBeatsForLongNote = 0;
 
                         notes[k, i] = 0;
@@ -1072,7 +220,6 @@ public class GameController : MonoBehaviour
                             howManyBeatsForLongNote++;
                         }
 
-
                         GameObject longNoteSpawned = Instantiate(longNotePrefab, detectPoints[i].transform.position + new Vector3(0, ((10 / secPerBeat) + 1) * secPerBeat, 0), detectPoints[i].transform.rotation);
                         longNoteSpawned.GetComponent<LongNote>().noteLength = howManyBeatsForLongNote * 1;
                         
@@ -1080,24 +227,6 @@ public class GameController : MonoBehaviour
                 }
             }
         }
-    }
-    #endregion
-
-    #region FUNC:calculateFullCombo
-    int calculateFullCombo()
-    {
-        int x = 0;
-        for (int k = 0; k < totalBeats; k++)
-        {
-            for (int i = 0; i <= 3; i++)
-            {
-                if (notes[k, i] == 1)
-                {
-                    x++;
-                }
-            }
-        }
-        return x;
     }
     #endregion
 
@@ -1188,7 +317,51 @@ public class GameController : MonoBehaviour
         //把字串轉換成Data物件
         loadedData = JsonUtility.FromJson<SongData>(LoadData);
 
-        StartCoroutine(LoadAudio());
+        
+    }
+
+    void SongSaveToJson()
+    {
+        dataToSave = loadedData;
+        dataToSave.songName = "Gurenge";
+        dataToSave.songBPM = 540;
+        dataToSave.songLength = musicLength;
+        dataToSave.songDifficulty = songDifficulty.easy;
+
+        if (GameData.maxCombo >= GameData.highCombo)
+        {
+            dataToSave.highCombo = GameData.maxCombo;
+            GameData.highCombo = GameData.maxCombo;
+        }
+            
+        if (gameScore >= GameData.highScore)
+        {
+            dataToSave.highScore = gameScore;
+            GameData.highScore = gameScore;
+        }
+            
+        dataToSave.playTimes = loadedData.playTimes++;
+
+        string jsonInfo = JsonUtility.ToJson(dataToSave, true);
+
+        string path = Path.Combine(Application.dataPath, "SongDatas");
+
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
+
+        path = Path.Combine(path, dataToSave.songName);
+
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
+
+        path = Path.Combine(path, dataToSave.songName + ".txt");
+
+        File.WriteAllText(path, jsonInfo);
+
     }
 
     #endregion
@@ -1244,17 +417,19 @@ public class GameController : MonoBehaviour
         audioSource.clip = audioClip;
     }
 
-    /// <summary>
-    /// 1. �˼�timeToPlayMusic����񭵼�
-    /// </summary>
-    /// <param name="timeToPlayMusic"></param>
-    /// <returns></returns>
-    #region IEnumerator:WaitForStart
+    #region IEnumerator:WaitForStart, WaitForEnd
     IEnumerator WaitForStart(float timeToPlayMusic)
     {
         yield return new WaitForSeconds(timeToPlayMusic);
         // Start the music
         audioSource.Play();
+    }
+
+    IEnumerator WaitForEnd(float time)
+    {
+        yield return new WaitForSeconds(time);
+        SongSaveToJson();
+        SceneManager.LoadScene("ConcludeScene");
     }
     #endregion
 }

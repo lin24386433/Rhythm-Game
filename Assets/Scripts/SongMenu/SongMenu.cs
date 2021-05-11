@@ -23,13 +23,22 @@ public class SongMenu : MonoBehaviour
     AudioSource audioSource;
     AudioClip audioClip;
 
+    string loadData;
+
     [SerializeField]
     private Text bestScoreTxt;
 
     [SerializeField]
     private Text bestComboTxt;
 
-    // Start is called before the first frame update
+    [SerializeField]
+    private Image rankPanel;
+
+    private float accurate;
+
+    [SerializeField]
+    Sprite[] imgs;
+
     void Start()
     {
         LoadFromJsons();
@@ -38,12 +47,10 @@ public class SongMenu : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
 
-        StartCoroutine(LoadAudio());
-
+        StartCoroutine(LoadAudio());        
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
@@ -83,6 +90,8 @@ public class SongMenu : MonoBehaviour
             obj.transform.SetParent(contentObj.transform);
 
             obj.GetComponent<SongListPanel>().songNameTxt.text = songDatas[i].songName;
+            obj.GetComponent<SongListPanel>().difficulty = songDatas[i].songDifficulty;
+            obj.GetComponent<SongListPanel>().songRankImg.sprite = imgs[SetRankForEachSong(songDatas[i])];
 
             // pass value v.s pass reference
             int copy = i;
@@ -94,7 +103,9 @@ public class SongMenu : MonoBehaviour
         bestComboTxt.text = songDatas[0].highCombo.ToString();
         buttons[GameData.selectedPanelIndex].transform.localScale = new Vector3(1.2f, 1.2f, 0);
 
+        rankPanel.sprite = imgs[SetRankForEachSong(songDatas[0])];
 
+        buttons[0].gameObject.GetComponent<SongListPanel>().ChangeSelectedStyle(true);
     }
 
     private IEnumerator LoadAudio()
@@ -155,14 +166,45 @@ public class SongMenu : MonoBehaviour
         audioSource.loop = true;
     }
 
+    int SetRankForEachSong(SongData data)
+    {
+        accurate = (float)((float)data.highScore / (float)data.totalScore) * 100;
+
+        if (accurate >= 96)
+        {
+            return 0;   // S
+        }
+        else if (accurate >= 90)
+        {
+            return 1;   // A
+        }
+        else if (accurate >= 80)
+        {
+            return 2;   // B
+        }
+        else if (accurate >= 70)
+        {
+            return 3;   // C
+        }
+        else
+        {
+            return 4;   // F
+        }
+    }
 
     public void OnBtnClicked(int index)
     {
+        buttons[index].gameObject.GetComponent<SongListPanel>().ChangeSelectedStyle(false);
+
         buttons[GameData.selectedPanelIndex].transform.localScale = new Vector3(1.0f, 1.0f, 0);
         GameData.selectedPanelIndex = index;
         buttons[GameData.selectedPanelIndex].transform.localScale = new Vector3(1.2f, 1.2f, 0);
         bestScoreTxt.text = songDatas[GameData.selectedPanelIndex].highScore.ToString();
         bestComboTxt.text = songDatas[GameData.selectedPanelIndex].highCombo.ToString();
+
+        rankPanel.sprite = imgs[SetRankForEachSong(songDatas[index])];
+
+        buttons[index].gameObject.GetComponent<SongListPanel>().ChangeSelectedStyle(true);
 
         StartCoroutine(LoadAudio());
     }

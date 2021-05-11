@@ -214,8 +214,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33eff665b0d138e4f8db260443811160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficulty: 0
   songNameTxt: {fileID: 1865864405909091262}
-  songNameImg: {fileID: 88371336227753561}
+  songRankImg: {fileID: 88371336227753561}
+  imgs:
+  - {fileID: 21300000, guid: af1b3f0c2269ab542a8d661dcb9181a7, type: 3}
+  - {fileID: 21300000, guid: 32e863c2470117c479723e3f9dfe9ab6, type: 3}
+  - {fileID: 21300000, guid: 2b648604b16389a42a2b837b92f347c0, type: 3}
+  - {fileID: 21300000, guid: d263363db14e87344a8576be1d0057bc, type: 3}
+  - {fileID: 21300000, guid: 81b6167cdf71ed14688f1f1770fc2fcd, type: 3}
+  selectedStyle:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 925c0f5d3f0e32e40a8baefcc7cdbada, type: 3}
+  - {fileID: 21300000, guid: 295f046e8bd4562448cb43a98c53542c, type: 3}
+  - {fileID: 21300000, guid: f2c0654d55945f04f81edc6d0c589359, type: 3}
+  - {fileID: 0}
 --- !u!1 &7592512003340403333
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +241,7 @@ GameObject:
   - component: {fileID: 129696441068000815}
   - component: {fileID: 88371336227753561}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: RankPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -883,7 +883,7 @@ public class EpicRecorder : MonoBehaviour
         songBpm = loadedData.songBPM;
         notes = StringToTwoDimensionalArray(loadedData.songNotesStrVer);
 
-        //Load the AudioSource attached to the Conductor GameObject
+        // Load the AudioSource attached to the Conductor GameObject
         musicSource = GetComponent<AudioSource>();
 
         musicLength = musicSource.clip.length;
@@ -891,12 +891,12 @@ public class EpicRecorder : MonoBehaviour
         totalBeats = (Mathf.RoundToInt((songBpm * musicLength) / 60));
 
 
-        //Calculate the number of seconds in each beat
+        // Calculate the number of seconds in each beat
         secPerBeat = 60f / songBpm;
 
         beatPerSec = 1 / secPerBeat;
 
-        //Record the time when the music starts
+        // Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
 
 
@@ -914,10 +914,10 @@ public class EpicRecorder : MonoBehaviour
         {
             time = musicSource.time;
 
-            //determine how many seconds since the song started
+            // determine how many seconds since the song started
             songPosition = (float)(AudioSettings.dspTime - dspSongTime);
 
-            //determine how many beats since the song started
+            // determine how many beats since the song started
             songPositionInBeats = time / secPerBeat;
 
             beatNow = (int)songPositionInBeats;
@@ -938,7 +938,7 @@ public class EpicRecorder : MonoBehaviour
             OnPlay = false;
         }
 
-        record(beatNow);
+        Record(beatNow);
     }
 
     #region FUNC:SpawnAllEpicBeat
@@ -971,7 +971,7 @@ public class EpicRecorder : MonoBehaviour
     #endregion
 
     #region FUNC:record
-    void record(int bpm)
+    void Record(int bpm)
     {
         if (bpm == totalBeats) return;
         if (Input.GetKeyDown(KeyCode.Z))
@@ -1163,7 +1163,7 @@ public class EpicRecorder : MonoBehaviour
         File.WriteAllText(path, jsonInfo);
 
 
-        Debug.Log("¼g¤J§¹¦¨");
+        Debug.Log("ï¿½gï¿½Jï¿½ï¿½ï¿½ï¿½");
         Debug.Log("dataPath: " + path);
     }
 
@@ -1179,7 +1179,7 @@ public class EpicRecorder : MonoBehaviour
 
         LoadData = File.ReadAllText(path);
 
-        //§â¦r¦êÂà´«¦¨Dataª«¥ó
+        //ï¿½ï¿½rï¿½ï¿½ï¿½à´«ï¿½ï¿½Dataï¿½ï¿½ï¿½ï¿½
         loadedData = JsonUtility.FromJson<SongData>(LoadData);
 
     }

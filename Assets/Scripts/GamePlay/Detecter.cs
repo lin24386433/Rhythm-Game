@@ -66,22 +66,25 @@ public class Detecter : MonoBehaviour
                 {
                     GameController.instance.gameScore += 500;
                     GameData.perfectCount++;
+                    GameController.instance.combo++;
                     Instantiate(effects[0], this.transform.position, this.transform.rotation);
                 }
                 else if (timing <= goodTiming)
                 {
                     GameController.instance.gameScore += 300;
                     GameData.goodCount++;
+                    GameController.instance.combo++;
                     Instantiate(effects[1], this.transform.position, this.transform.rotation);
                 }
                 else if (timing <= badTiming)
                 {
                     GameController.instance.gameScore += 100;
                     GameData.badCount++;
+                    GameController.instance.combo = 0;
                     Instantiate(effects[2], this.transform.position, this.transform.rotation);
                 }
 
-                GameController.instance.combo++;
+                
                 musicSource.Play();
                 Destroy(collision.gameObject);
             }
@@ -102,6 +105,7 @@ public class Detecter : MonoBehaviour
                 {
                     GameController.instance.gameScore += 500;
                     GameData.perfectCount++;
+                    GameController.instance.combo++;
                     Instantiate(effects[0], this.transform.position, this.transform.rotation);
                     
                 }
@@ -109,16 +113,18 @@ public class Detecter : MonoBehaviour
                 {
                     GameController.instance.gameScore += 300;
                     GameData.goodCount++;
+                    GameController.instance.combo++;
                     Instantiate(effects[1], this.transform.position, this.transform.rotation);
                 }
                 else if (timing <= badTiming)
                 {
                     GameController.instance.gameScore += 100;
                     GameData.badCount++;
+                    GameController.instance.combo = 0;
                     Instantiate(effects[2], this.transform.position, this.transform.rotation);
                 }
 
-                GameController.instance.combo++;
+                
                 musicSource.Play();
                 collision.tag = "LongNoteStarted";
 
@@ -153,22 +159,25 @@ public class Detecter : MonoBehaviour
                 {
                     GameController.instance.gameScore += 500;
                     GameData.perfectCount++;
+                    GameController.instance.combo++;
                     Instantiate(effects[0], this.transform.position, this.transform.rotation);
                 }
                 else if (timing <= goodTiming)
                 {
                     GameController.instance.gameScore += 300;
                     GameData.goodCount++;
+                    GameController.instance.combo++;
                     Instantiate(effects[1], this.transform.position, this.transform.rotation);
                 }
                 else if (timing <= badTiming)
                 {
                     GameController.instance.gameScore += 100;
                     GameData.badCount++;
+                    GameController.instance.combo = 0;
                     Instantiate(effects[2], this.transform.position, this.transform.rotation);
                 }
 
-                GameController.instance.combo++;
+                
                 musicSource.Play();
             }
         }
